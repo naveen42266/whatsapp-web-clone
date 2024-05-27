@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [selectedTab , setSelectedTab] = useState('chats');
   return (
-    <div className="h-screen w-full relative">
+    <div className="h-screen w-full relative overflow-y-hidden">
       {/* 1st Layer */}
       <div className="bg-[#00a884] h-[17.5%] w-full"></div>
       <div className="bg-slate-200 h-[82.5%] w-full"></div>

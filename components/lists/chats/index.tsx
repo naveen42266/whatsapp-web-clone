@@ -13,6 +13,8 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import DescriptionIcon from '@mui/icons-material/Description';
 import moment from "moment";
 interface ChatsProps {
     tab: string;
@@ -73,16 +75,81 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
         return ChatDetails;
     }
 
+    function handleFilterRecentChat(id: string) {
+        // Filter messages by sender ID
+        const filtered = ChatDetails.messages.filter((msg) => msg.sender === id);
+
+        // Check if there is more than one message from this sender
+        if (filtered.length > 1) {
+            // Find the most recent message
+            const recentMessage = filtered.reduce((latest, current) => {
+                return new Date(latest.timestamp) > new Date(current.timestamp) ? latest : current;
+            });
+            if (recentMessage.type === 'text') {
+                return <div className="flex items-center gap-1"><div className="text-[#3b4a54]">{recentMessage?.content as string}</div></div>
+            }
+            else if (recentMessage.type === 'photo') {
+                return <div className="flex items-center gap-1">
+                    <DoneAllIcon className="text-[#53bdeb]" />
+                    <PhotoCameraIcon className="text-[#8696a0]" />
+                    <div className="text-[#3b4a54]">Photo</div>
+                </div>
+            }
+            else if (recentMessage.type === 'video') {
+                return <div className="flex items-center gap-1">
+                    <DoneAllIcon className="text-[#53bdeb]" />
+                    <VideocamIcon className="text-[#8696a0]" />
+                    <div className="text-[#3b4a54]">Video</div>
+                </div>
+            }
+            else if (recentMessage.type === 'audio') {
+                return <div className="flex items-center gap-1">
+                    <DoneAllIcon className="text-[#53bdeb]" />
+                    <DescriptionIcon className="text-[#8696a0]" />
+                    <div className="text-[#3b4a54]">Audio</div>
+                </div>
+            }
+        }
+
+        // Return the single message or null if no messages are found
+        // return filtered.length === 1 ? filtered[0] : null;
+        if (filtered.length === 1 && filtered[0].type === 'text') {
+            return <div className="flex items-center gap-1"><div className="text-[#3b4a54]">{filtered[0]?.content as string}</div></div>
+        }
+        else if (filtered.length === 1 && filtered[0].type === 'photo') {
+            return <div className="flex items-center gap-1">
+                <DoneAllIcon className="text-[#53bdeb]" />
+                <PhotoCameraIcon className="text-[#8696a0]" />
+                <div className="text-[#3b4a54]">Photo</div>
+            </div>
+        }
+        else if (filtered.length === 1 && filtered[0].type === 'video') {
+            return <div className="flex items-center gap-1">
+                <DoneAllIcon className="text-[#53bdeb]" />
+                <VideocamIcon className="text-[#8696a0]" />
+                <div className="text-[#3b4a54]">Video</div>
+            </div>
+        }
+        else if (filtered.length === 1 && filtered[0].type === 'audio') {
+            return <div className="flex items-center gap-1">
+                <DoneAllIcon className="text-[#53bdeb]" />
+                <DescriptionIcon className="text-[#8696a0]" />
+                <div className="text-[#3b4a54]">Audio</div>
+            </div>
+        }
+        return <div className="flex items-center gap-1"></div>
+    }
+
     return (
-        <div>
-            <div className="sticky top-0">
+        <div className="h-screen w-full">
+            <div className="sticky top-0 bg-white">
                 <div className="flex justify-between items-center py-3 px-6">
                     <div className="text-[22px] font-bold capitalize">{tab}</div>
                     <div className="relative flex items-center gap-6 mr-1">
-                        <div><AddCommentOutlinedIcon /></div>
+                        <div className="cursor-pointer"><svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" fill="none"><title>new-chat-outline</title><path d="M9.53277 12.9911H11.5086V14.9671C11.5086 15.3999 11.7634 15.8175 12.1762 15.9488C12.8608 16.1661 13.4909 15.6613 13.4909 15.009V12.9911H15.4672C15.9005 12.9911 16.3181 12.7358 16.449 12.3226C16.6659 11.6381 16.1606 11.0089 15.5086 11.0089H13.4909V9.03332C13.4909 8.60007 13.2361 8.18252 12.8233 8.05119C12.1391 7.83391 11.5086 8.33872 11.5086 8.991V11.0089H9.49088C8.83941 11.0089 8.33411 11.6381 8.55097 12.3226C8.68144 12.7358 9.09947 12.9911 9.53277 12.9911Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M0.944298 5.52617L2.99998 8.84848V17.3333C2.99998 18.8061 4.19389 20 5.66665 20H19.3333C20.8061 20 22 18.8061 22 17.3333V6.66667C22 5.19391 20.8061 4 19.3333 4H1.79468C1.01126 4 0.532088 4.85997 0.944298 5.52617ZM4.99998 8.27977V17.3333C4.99998 17.7015 5.29845 18 5.66665 18H19.3333C19.7015 18 20 17.7015 20 17.3333V6.66667C20 6.29848 19.7015 6 19.3333 6H3.58937L4.99998 8.27977Z" fill="currentColor"></path></svg></div>
                         {/* <div><ChatBubbleOutlineIcon className="rotate-90" /></div>
                     <div className="absolute top-0 left-1.5 right-0 bottom-4 pb-4 text-base font-bold">+</div> */}
-                        <div><MoreVertIcon /></div>
+                        <div className="cursor-pointer"><MoreVertIcon /></div>
                     </div>
                 </div>
                 <div className="bg-[#f0f2f5] rounded-md mx-3 mt-2 flex items-center py-1">
@@ -98,7 +165,7 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
                     })}
                 </div>
             </div>
-            <div className="grid grid-cols-12 items-center pl-4 py-3 bg-[#f0f2f5] mt-4">
+            {/* <div className="grid grid-cols-12 items-center pl-4 py-3 bg-[#f0f2f5] mt-4">
                 <div className="col-span-2 items-center">
                     <Avatar alt="Naveen" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s" sx={{ width: 50, height: 50 }} />
                 </div>
@@ -116,7 +183,7 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
                         <div><PushPinIcon className="text-[#8696a0]" /></div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* <div className="grid grid-cols-12 items-center pl-4 pt-3 bg-white hover:bg-[#f5f6f6]" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                 <div className="col-span-2 items-center">
                     <Avatar alt="Naveen" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s" sx={{ width: 50, height: 50 }} />
@@ -138,7 +205,7 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
                 <div className="col-span-2"></div>
                 <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
             </div> */}
-            <div className="grid grid-cols-12 items-center pl-4 pt-3 bg-white hover:bg-[#f5f6f6]">
+            {/* <div className="grid grid-cols-12 items-center pl-4 pt-3 bg-white hover:bg-[#f5f6f6]">
                 <div className="col-span-2 items-center">
                     <Avatar alt="Naveen" src="" sx={{ width: 50, height: 50 }} />
                 </div>
@@ -155,35 +222,33 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
                 </div>
                 <div className="col-span-2"></div>
                 <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
+            </div> */}
+            <div className="h-[74%] w-full overflow-y-scroll">
+                {handleChats()?.participants?.map((each, index) => {
+                    return (
+                        <div key={index} className="grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 bg-white hover:bg-[#f5f6f6]" onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })}>
+                            <div className="col-span-2 items-center">
+                                <Avatar alt="Naveen" src={ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.profile ?? ''} sx={{ width: 50, height: 50 }} />
+                            </div>
+                            <div className="col-span-9 items-center">
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#111b21] text-[17px]">{each?.name}</div>
+                                    <div className="text-[#667781] text-xs">{moment(ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.timestamp ?? 0).format('LT')}</div>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    {handleFilterRecentChat(each.id)}
+                                    <div className="flex">
+                                        {/* <PushPinIcon className="text-[#8696a0]" /> */}
+                                        <KeyboardArrowDownIcon className={`${hover?.name == each?.name && hover?.hover ? 'block' : 'hidden'} text-[#8696a0]`} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-2"></div>
+                            <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
+                        </div>
+                    )
+                })}
             </div>
-            {handleChats()?.participants?.map((each, index) => {
-                return (
-                    <div key={index} className="grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 bg-white hover:bg-[#f5f6f6]" onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })}>
-                        <div className="col-span-2 items-center">
-                            <Avatar alt="Naveen" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s" sx={{ width: 50, height: 50 }} />
-                        </div>
-                        <div className="col-span-9 items-center">
-                            <div className="flex justify-between items-center">
-                                <div className="text-[#111b21] text-[17px]">{each?.name}</div>
-                                <div className="text-[#667781] text-xs">{moment(ChatDetails?.messages?.find((msg) => msg.sender == each.id)?.timestamp).format('LT')}</div>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <div className="flex items-center gap-1">
-                                    <DoneAllIcon className="text-[#53bdeb]" />
-                                    <PhotoCameraIcon className="text-[#8696a0]" />
-                                    <div className="text-[#3b4a54]">Photo</div>
-                                </div>
-                                <div className="flex">
-                                    {/* <PushPinIcon className="text-[#8696a0]" /> */}
-                                    <KeyboardArrowDownIcon className={`${hover?.name == each?.name && hover?.hover ? 'block' : 'hidden'} text-[#8696a0]`} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-span-2"></div>
-                        <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
-                    </div>
-                )
-            })}
         </div>
     )
 }

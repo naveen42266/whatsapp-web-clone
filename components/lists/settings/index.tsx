@@ -1,10 +1,10 @@
 import React from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-interface CommunitiesProps {
+interface SettingsProps {
     tab: string;
 }
-const Communities: React.FC<CommunitiesProps> = ({ tab }) => {
+const Settings: React.FC<SettingsProps> = ({ tab }) => {
     return (
         <div>
             <div className="flex justify-between py-3 px-6">
@@ -14,4 +14,4 @@ const Communities: React.FC<CommunitiesProps> = ({ tab }) => {
     )
 }
 
-export default Communities;
+export default Settings;
