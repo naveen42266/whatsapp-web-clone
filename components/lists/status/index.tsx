@@ -49,7 +49,7 @@ const Status: React.FC<StatusProps> = ({ tab }) => {
                 {handleFilteredByLatest()?.map((each, index) => {
                     return (
                         <div key={index} className="cursor-pointer hover:bg-[#f5f6f6]">
-                             <div className="flex">
+                            <div className="flex">
                                 <div className="w-[15%]"></div>
                                 <div className="border-t border-[#e9edef] w-[85%]"></div>
                             </div>
