@@ -10,9 +10,41 @@
     .MuiInputBase-root.MuiInput-root::after {
         border-bottom: none !important;
     }
-    
-    .MuiInputBase-root.MuiInput-root{
-       font-size: 14px;
-       color: black;
+
+    .MuiInputBase-root.MuiInput-root {
+        font-size: 14px;
+        color: black;
     }
+}
+
+.animation {
+    animation-play-state: running;
+    overflow-x: hidden;
+    width: 258px;
+    height: 258px;
+    overflow-y: hidden;
+    animation-timing-function: steps(15);
+    background-size: 1600% auto;
+    animation-name: x12df34r-B;
+    background-repeat: no-repeat;
+    flex-basis: auto;
+    align-self: center;
+    animation-iteration-count: infinite;
+    flex-shrink: 0;
+    animation-duration: 1s;
+    flex-grow: 0;
+}
+
+@keyframes x12df34r-B {
+    from {
+        background-position-x: 0%;
+    }
+
+    to {
+        background-position-x: 100%;
+    }
+}
+
+[data-animation] {
+    background-image: url("https://static.whatsapp.net/rsrc.php/v3/yf/r/4l5Jzvrg84p.png");
 }

@@ -10,9 +10,9 @@ import HelpIcon from '@mui/icons-material/Help';
 import LogoutIcon from '@mui/icons-material/Logout';
 interface SettingsProps {
     tab: string;
+    handleProfile: (value: string) => void;
 }
-const Settings: React.FC<SettingsProps> = ({ tab }) => {
-    const settingsList = []
+const Settings: React.FC<SettingsProps> = ({ tab, handleProfile }) => {
     const [searchTerm, setSearchTerm] = useState('')
 
     return (
@@ -20,12 +20,12 @@ const Settings: React.FC<SettingsProps> = ({ tab }) => {
             <div className="flex justify-between py-3 px-6">
                 <div className="text-[22px] font-bold capitalize">{tab}</div>
             </div>
-            <div className="bg-[#f0f2f5] rounded-md mx-3 mt-2 flex items-center py-1">
+            <div className="bg-[#f0f2f5] rounded-md mx-3 mt-2 flex items-center py-1 mb-2">
                 <SearchOutlinedIcon fontSize="small" className="mx-3 text-[#54656f]" />
                 <TextField id="standard-basic" className="searchField ml-5" placeholder={'Search settings'} variant="standard" fullWidth value={searchTerm} onChange={(evt) => { setSearchTerm(evt.target.value) }} />
                 {searchTerm ? <CloseIcon fontSize="small" className="mx-3 text-[#54656f]" onClick={() => setSearchTerm('')} /> : ''}
             </div>
-            <div className="flex items-center p-4">
+            <div className="flex items-center p-4 hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('profile') }}>
                 <div>
                     <Avatar alt="Naveen" src={''} sx={{ width: "80px", height: "80px" }} />
                 </div>
@@ -34,7 +34,7 @@ const Settings: React.FC<SettingsProps> = ({ tab }) => {
                     <div className="text-sm text-[#54656F]">Take a Deep Breath "</div>
                 </div>
             </div>
-            <div className="hover:bg-[#f5f6f6] cursor-pointer">
+            <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('account') }}>
                 <div className="flex items-center px-6 py-4 gap-6">
                     <div><AccountCircleIcon fontSize="medium" /></div>
                     <div className="text-[17px] text-[#111b21]">Account</div>
@@ -84,7 +84,7 @@ const Settings: React.FC<SettingsProps> = ({ tab }) => {
                     <div className="w-[84%] border border-[#e9edef]"></div>
                 </div>
             </div>
-            <div className="hover:bg-[#f5f6f6] cursor-pointer">
+            <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('help') }}>
                 <div className="flex items-center px-6 py-4 gap-6">
                     <div><HelpIcon fontSize="medium" /></div>
                     <div className="text-[17px] text-[#111b21]">Help</div>
