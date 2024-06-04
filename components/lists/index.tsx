@@ -7,6 +7,7 @@ import Settings from "./settings";
 import Profile from "./profile";
 import Account from "./settings/account";
 import Help from "./settings/help";
+import Notifications from "./settings/notifications";
 
 interface ListComponentProps {
     tab: string;
@@ -36,10 +37,13 @@ const ListComponent: React.FC<ListComponentProps> = ({ tab }) => {
             return <Profile tab={'profile'} from={'settings'} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
         }
         else if (tab === 'settings' && switchScreen == 'account') {
-            return <Account tab={"account"} handleBack={(value: string)=> {setSwitchScreen(''), selectedTab()} }/>
+            return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
         }
         else if (tab === 'settings' && switchScreen == 'help') {
-            return <Help tab={"help"} handleBack={(value: string)=> {setSwitchScreen(''), selectedTab()} }/>
+            return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+        }
+        else if (tab === 'settings' && switchScreen == 'notifications') {
+            return <Notifications tab={"notifications"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
         }
     }
     return (

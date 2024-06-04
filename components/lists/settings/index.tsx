@@ -64,7 +64,7 @@ const Settings: React.FC<SettingsProps> = ({ tab, handleProfile }) => {
                     <div className="w-[84%] border border-[#e9edef]"></div>
                 </div>
             </div>
-            <div className="hover:bg-[#f5f6f6] cursor-pointer">
+            <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('notifications') }}>
                 <div className="flex items-center px-6 py-4 gap-6">
                     <div><NotificationsIcon fontSize="medium" /></div>
                     <div className="text-[17px] text-[#111b21]">Notifications</div>
