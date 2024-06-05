@@ -21,7 +21,7 @@ const Notifications: React.FC<NotificationProps> = ({ tab, handleBack }) => {
             <div className="h-[70%] w-full">
                 <div className="bg-white">
                     <div className="flex items-center gap-5 py-5 px-6 ">
-                        <ArrowBackIcon fontSize="medium" onClick={() => { handleBack('back') }} />
+                        <ArrowBackIcon fontSize="medium" className="text-[#54656f]" onClick={() => { handleBack('back') }} />
                         <div className="text-base capitalize">{tab}</div>
                     </div>
                     <div className="text-sm text-[#667781] py-4 px-7">Messages</div>

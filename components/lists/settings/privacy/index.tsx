@@ -13,7 +13,7 @@ const Privacy: React.FC<PrivacyProps> = ({ tab, handleBack }) => {
     return (
         <div className="h-screen w-full">
             <div className="flex items-center gap-5 py-5 px-6 bg-white">
-                <ArrowBackIcon fontSize="medium" onClick={() => { handleBack('back') }} />
+                <ArrowBackIcon fontSize="medium" className="text-[#54656f]" onClick={() => { handleBack('back') }} />
                 <div className="text-base capitalize">{tab}</div>
             </div>
             <div className="h-[86%] w-full overflow-y-scroll">
