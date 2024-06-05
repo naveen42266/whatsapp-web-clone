@@ -44,7 +44,7 @@ const Settings: React.FC<SettingsProps> = ({ tab, handleProfile }) => {
                     <div className="w-[84%] border border-[#e9edef]"></div>
                 </div>
             </div>
-            <div className="hover:bg-[#f5f6f6] cursor-pointer">
+            <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('privacy') }}>
                 <div className="flex items-center px-6 py-4 gap-6">
                     <div><LockIcon fontSize="medium" /></div>
                     <div className="text-[17px] text-[#111b21]">Privacy</div>
@@ -94,7 +94,7 @@ const Settings: React.FC<SettingsProps> = ({ tab, handleProfile }) => {
                     <div className="w-[84%] border border-[#e9edef]"></div>
                 </div>
             </div>
-            <div className="hover:bg-[#f5f6f6] cursor-pointer">
+            <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={() => { handleProfile('logout') }}>
                 <div className="flex items-center px-6 py-4 gap-6">
                     <div><LogoutIcon fontSize="medium" className="text-[#ea0038]" /></div>
                     <div className="text-[17px] text-[#ea0038]">Log out</div>

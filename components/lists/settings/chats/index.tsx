@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Checkbox from '@mui/material/Checkbox';
-
-class NotificationModel {
-    preview: boolean | null = null;
-    reaction: boolean | null = null;
-}
 
 interface ChatSettingsProps {
     tab: string;
@@ -15,8 +10,6 @@ interface ChatSettingsProps {
 
 const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack }) => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-    const [messageNotification, setMessageNotification] = useState(false)
-    const [byMessageNotification, setByMessageNotification] = useState<NotificationModel>({ preview: true, reaction: true })
     return (
         <div className="h-full w-full bg-[#f0f2f5]">
             <div className="h-[70%] w-full">

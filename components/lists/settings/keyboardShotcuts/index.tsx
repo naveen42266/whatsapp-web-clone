@@ -24,22 +24,26 @@ const keyboardShortcuts = [
     { action: "Lock App", shortcut: "Ctrl + Alt + L" },
 ];
 
-const KeyboardShortcuts = () => {
+interface KeyboardShortcutsProps{
+    handleClose:()=>void;
+}
+
+const KeyboardShortcuts:React.FC<KeyboardShortcutsProps> = ({handleClose}) => {
     return (
         <div className='h-full w-full'>
-            <div className='my-6'>Keyboard Shortcuts</div>
+            <div className='my-6 text-lg'>Keyboard Shortcuts</div>
             <div className='grid grid-cols-12 h-[80%] w-full overflow-y-scroll'>
                 {keyboardShortcuts.map((shortcut, index) => (
                     <div key={index} className='col-span-6 flex justify-between mr-4 my-3'>
-                        <div>{shortcut.action}</div>
+                        <div className='text-[#3B4A54]'>{shortcut.action}</div>
                         <div className='flex gap-2'>{shortcut.shortcut.split('+').map((keys, i) => (
-                            <span key={i} className='py-1 px-3 bg-[#f0f2f5] rounded-lg border border-slate-400 text-[#111B21]'>{keys}</span>
+                            <span key={i} style={{backgroundColor:'rgba(59, 74, 84, 0.12)'}} className='py-1 px-3 rounded-lg border border-slate-400 text-[#111B21]'>{keys}</span>
                         ))}</div>
                     </div>
                 ))}
             </div>
             <div className='flex float-end my-4'>
-                <span className='text-white rounded-full bg-[#008069] py-2 px-5'>Ok</span>
+                <span className='text-white rounded-full bg-[#008069] py-2 px-5 cursor-pointer'onClick={handleClose}>Ok</span>
             </div>
         </div>
     );
