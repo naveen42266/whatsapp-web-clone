@@ -16,7 +16,7 @@ const Privacy: React.FC<PrivacyProps> = ({ tab, handleBack }) => {
                 <ArrowBackIcon fontSize="medium" className="text-[#54656f]" onClick={() => { handleBack('back') }} />
                 <div className="text-base capitalize">{tab}</div>
             </div>
-            <div className="h-[86%] w-full overflow-y-scroll">
+            <div className="h-[86%] w-full overflow-y-scroll custom-scroll">
                 <div className="bg-white">
                     <div className="text-sm text-[#667781] py-4 px-7">Who can see my personal info</div>
                     <div className="flex justify-between items-center  px-6 py-4 border-b border-[#e9edef]">

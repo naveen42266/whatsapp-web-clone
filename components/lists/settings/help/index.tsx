@@ -16,7 +16,7 @@ const Help: React.FC<HelpProps> = ({ tab, handleBack }) => {
                 <ArrowBackIcon fontSize="medium" className="text-[#54656f]" onClick={() => { handleBack('back') }} />
                 <div className="text-base capitalize">{tab}</div>
             </div>
-            <div className="h-[86%] w-full overflow-y-scroll">
+            <div className="h-[86%] w-full overflow-y-scroll custom-scroll">
                 <div className="flex justify-center py-3">
                     <div className="animation" data-animation="true"></div>
                 </div>

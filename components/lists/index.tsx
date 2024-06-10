@@ -15,15 +15,16 @@ import Privacy from "./settings/privacy";
 
 interface ListComponentProps {
     tab: string;
+    handleDetailContent: (value: string , key: string) => void;
 }
 
-const ListComponent: React.FC<ListComponentProps> = ({ tab }) => {
+const ListComponent: React.FC<ListComponentProps> = ({ tab, handleDetailContent }) => {
     const [switchScreen, setSwitchScreen] = useState<string>('')
     const [keyboardShortcutsModal, setKeyboardShortcutsModal] = useState<boolean>(false)
     const [logout, setLogout] = useState<boolean>(false)
     function selectedTab() {
         if (tab === 'chats') {
-            return <Chats tab={tab} />
+            return <Chats tab={tab} handleChatUser={(user: string) => { handleDetailContent(user,'chat') }} />
         }
         else if (tab === 'communities') {
             return <Communities tab={tab} />

@@ -32,14 +32,14 @@ const KeyboardShortcuts:React.FC<KeyboardShortcutsProps> = ({handleClose}) => {
     return (
         <div className='h-full w-full'>
             <div className='my-6 text-lg'>Keyboard Shortcuts</div>
-            <div className='grid grid-cols-12 h-[80%] w-full overflow-y-scroll'>
+            <div className='grid grid-cols-12 h-[80%] w-full overflow-y-scroll custom-scroll'>
                 {keyboardShortcuts.map((shortcut, index) => (
-                    <div key={index} className='col-span-6 flex justify-between mr-4 my-3'>
-                        <div className='text-[#3B4A54]'>{shortcut.action}</div>
-                        <div className='flex gap-2'>{shortcut.shortcut.split('+').map((keys, i) => (
+                    <span key={index} className='col-span-12 sm:col-span-6 flex justify-between mr-4 my-3'>
+                        <span className='text-[#3B4A54]'>{shortcut.action}</span>
+                        <span className='flex gap-2'>{shortcut.shortcut.split('+').map((keys, i) => (
                             <span key={i} style={{backgroundColor:'rgba(59, 74, 84, 0.12)'}} className='py-1 px-3 rounded-lg border border-slate-400 text-[#111B21]'>{keys}</span>
-                        ))}</div>
-                    </div>
+                        ))}</span>
+                    </span>
                 ))}
             </div>
             <div className='flex float-end my-4'>

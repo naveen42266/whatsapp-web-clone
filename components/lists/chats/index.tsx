@@ -18,12 +18,13 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import moment from "moment";
 interface ChatsProps {
     tab: string;
+    handleChatUser: (user: string) => void;
 }
-const Chats: React.FC<ChatsProps> = ({ tab }) => {
+const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
     const tags = ['all', 'unread', 'groups']
-    const [searchTerm, setSearchTerm] = useState('')
-    const [tag, setTag] = useState('all')
-    const [isFocused, setIsFocused] = useState(false);
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [tag, setTag] = useState<string>('all')
+    const [isFocused, setIsFocused] = useState<boolean>(false);
     const [hover, setHover] = useState({ 'hover': false, 'name': '' });
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -223,10 +224,10 @@ const Chats: React.FC<ChatsProps> = ({ tab }) => {
                 <div className="col-span-2"></div>
                 <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
             </div> */}
-            <div className="h-[74%] w-full overflow-y-scroll">
+            <div className="h-[74%] w-full overflow-y-scroll custom-scroll">
                 {handleChats()?.participants?.map((each, index) => {
                     return (
-                        <div key={index} className="grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 bg-white hover:bg-[#f5f6f6]" onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })}>
+                        <div key={index} className="grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 bg-white hover:bg-[#f5f6f6]" onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })} onClick={() => { handleChatUser(each?.name) }}>
                             <div className="col-span-2 items-center">
                                 <Avatar alt="Naveen" src={ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.profile ?? ''} sx={{ width: 50, height: 50 }} />
                             </div>

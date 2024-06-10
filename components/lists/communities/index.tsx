@@ -10,7 +10,7 @@ const Communities: React.FC<CommunitiesProps> = ({ tab }) => {
             <div className="flex justify-between py-3 px-6">
                 <div className="text-[22px] font-bold capitalize">{tab}</div>
             </div>
-            <div className="h-[87%] w-full overflow-y-scroll">
+            <div className="h-[87%] w-full overflow-y-scroll custom-scroll">
                 <div className="flex justify-items-center items-center px-4 py-3">
                     <div className="bg-[#00a884] rounded-xl text-white p-2">
                         <GroupsIcon className="text-3xl" />
