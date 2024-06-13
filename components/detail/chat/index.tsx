@@ -44,7 +44,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     };
     return (
         <div className="h-screen w-full">
-            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between">
+            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer">
                 <div className="flex items-center gap-3">
                     <Avatar alt="Naveen" src={''} sx={{ width: "42px", height: "42px" }} />
                     <div>
@@ -58,12 +58,15 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                     <div className="cursor-pointer"><MoreVertIcon /></div>
                 </div>
             </div>
-            <div className="p-4 h-[80%] w-full overflow-y-scroll custom-scroll">
+            <div className="p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative">
+                <div className="flex justify-center top-0 left-0 bottom-0 right-0 sticky">
+                    <span className="text-[#54656f] text-sm px-2 py-1 rounded-md shadow-md" style={{ backgroundColor: "rgba(255, 255, 255)" }}>TUESDAY</span>
+                </div>
                 <div className="p-6">
                     {messages.map((message, index) => (
                         <div key={index} className={`flex cursor-pointer  ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-[3px]`}>
                             {message.sender !== 'user' && isFirstMessageOfSender(messages, index) ? (<div className={`w-0 h-0 rotate-180 border-t-[15px] border-t-transparent border-l-[15px] border-l-white`}></div>) : <div className="p-2"></div>}
-                            <div className={`rounded-lg px-3 py-1 shadow-md ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
+                            <div className={`rounded-lg px-3 py-1 shadow-md max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
                                 <p className="text-sm pr-16">{message.text}</p>
                                 <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited ? '(Edited)' : ''}</p>
                             </div>
