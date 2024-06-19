@@ -3,7 +3,7 @@ import LockIcon from '@mui/icons-material/Lock';
 const DetailComponent = () => {
     return (
         <div className=" flex flex-col items-center mx-auto">
-            <img src="https://www.datocms-assets.com/16499/1571503812-coverwhitebg.png?auto=format" style={{ width: '320px', paddingTop: '144px' }} alt="" />
+            <img src="" style={{ width: '320px', paddingTop: '144px' }} alt="" />
             <div className="pt-[22px] mx-auto text-[32px] font-light text-[#41525d]">Download WhatsApp for Windows</div>
             <div className="flex items-center">
                 <div className="w-[5%]"></div>

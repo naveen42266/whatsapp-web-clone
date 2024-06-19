@@ -46,11 +46,11 @@
 }
 
 [data-animation] {
-    background-image: url("https://cdn-img1.imgworlds.com/assets/e3873302-212a-4c3a-aab3-c3bee866903c.jpg?key=home-gallery");
+    background-image: url();
 }
 
 .bgImg{
-    background-image: url(https://img.freepik.com/free-photo/abstract-uv-ultraviolet-light-composition_23-2149243965.jpg);
+    background-image: url();
 }
 
 .custom-scroll {
