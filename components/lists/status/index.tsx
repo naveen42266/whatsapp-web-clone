@@ -1,6 +1,4 @@
 import React from "react";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import Avatar from "@mui/material/Avatar";
 import { whatsappStatusData } from "../../../json";
 import moment from "moment";
