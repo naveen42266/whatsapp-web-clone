@@ -4,6 +4,11 @@ import { whatsappStatusData } from "../../../json";
 import moment from "moment";
 import LockIcon from '@mui/icons-material/Lock';
 
+class StatusModel{
+    user:string | null = null;
+    status: string | null = null;
+    isStatus: boolean | null = null;
+}
 interface StatusProps {
     tab: string;
 }
@@ -26,6 +31,15 @@ const Status: React.FC<StatusProps> = ({ tab }) => {
         });
         return whatsappStatusData
     }
+    
+    function handleStatus(user: string ,status: string){
+       let statusData = new StatusModel();
+       statusData.isStatus = true;
+       statusData.user = user;
+       statusData.status = status;
+       localStorage.setItem('status', JSON.stringify(statusData));
+       console.log(user,status)
+    }
 
     return (
         <div className="h-screen w-full">
@@ -46,7 +60,7 @@ const Status: React.FC<StatusProps> = ({ tab }) => {
                 <div className="text-base pt-[30px] pl-8 pb-4 text-[#008069]">RECENT</div>
                 {handleFilteredByLatest()?.map((each, index) => {
                     return (
-                        <div key={index} className="cursor-pointer hover:bg-[#f5f6f6]">
+                        <div key={index} className="cursor-pointer hover:bg-[#f5f6f6]" onClick={()=>{handleStatus(each?.name,"https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?cs=srgb&dl=pexels-8moments-1266810.jpg&fm=jpg")}}>
                             <div className="flex">
                                 <div className="w-[15%]"></div>
                                 <div className="border-t border-[#e9edef] w-[85%]"></div>

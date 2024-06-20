@@ -1,8 +1,7 @@
-import { Inter } from "next/font/google";
 import TabsComponent from "../components/tabs";
 import DetailComponent from "../components/detail";
 import ListComponent from "../components/lists";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ChatDetails from "../components/detail/chat";
 
 class DetailModel {
@@ -22,6 +21,7 @@ export default function Home() {
     if (selectedTab != 'chats')
       setKeyWork({ key: '', value: '' })
   }, [selectedTab])
+
   return (
     <div className="h-screen w-full relative overflow-y-hidden">
       <div className="bg-[#00a884] h-[17.5%] w-full"></div>
