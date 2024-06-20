@@ -3,6 +3,7 @@ import DetailComponent from "../components/detail";
 import ListComponent from "../components/lists";
 import { useEffect, useMemo, useState } from "react";
 import ChatDetails from "../components/detail/chat";
+import Status from "@/components/status";
 
 class DetailModel {
   key: string | null = null;
@@ -38,6 +39,6 @@ export default function Home() {
         </div>
       </div>
     </div>
-
+    // <Status />
   );
 }
