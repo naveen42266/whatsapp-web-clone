@@ -12,10 +12,12 @@ import ChatSettings from "./settings/chats";
 import Modal from "@mui/material/Modal";
 import KeyboardShortcuts from "./settings/keyboardShotcuts";
 import Privacy from "./settings/privacy";
+import SecurityNotifications from "./settings/account/securityNotifications";
+import RequestAccountInfo from "./settings/account/requestAccountInfo";
 
 interface ListComponentProps {
     tab: string;
-    handleDetailContent: (value: string , key: string) => void;
+    handleDetailContent: (value: string, key: string) => void;
 }
 
 const ListComponent: React.FC<ListComponentProps> = ({ tab, handleDetailContent }) => {
@@ -24,7 +26,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ tab, handleDetailContent 
     const [logout, setLogout] = useState<boolean>(false)
     function selectedTab() {
         if (tab === 'chats') {
-            return <Chats tab={tab} handleChatUser={(user: string) => { handleDetailContent(user,'chat') }} />
+            return <Chats tab={tab} handleChatUser={(user: string) => { handleDetailContent(user, 'chat') }} />
         }
         else if (tab === 'communities') {
             return <Communities tab={tab} />
@@ -45,7 +47,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ tab, handleDetailContent 
             return <Profile tab={'profile'} from={'settings'} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
         }
         else if (tab === 'settings' && switchScreen == 'account') {
-            return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToOpen={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (tab === 'settings' && switchScreen == 'help') {
             return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
@@ -90,6 +92,12 @@ const ListComponent: React.FC<ListComponentProps> = ({ tab, handleDetailContent 
                     </div>
                 </Modal>
             </div>
+        }
+        else if (tab === 'settings' && switchScreen == 'Security notifications') {
+            return <SecurityNotifications tab={'Security'} handleBack={(value: string) => { setSwitchScreen('account') }} />
+        }
+        else if (tab === 'settings' && switchScreen == 'Request account info') {
+            return <RequestAccountInfo tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('account') }} />
         }
     }
 
