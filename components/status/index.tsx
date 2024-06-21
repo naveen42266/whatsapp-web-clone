@@ -12,7 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 import TextField from "@mui/material/TextField";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { WhatsappContext } from "@/pages/whatsapp-context";
+import { WhatsappContext } from "../../useContext";
 const Status = () => {
     const [pause, setPause] = useState(false);
     const [mute, setMute] = useState(false);

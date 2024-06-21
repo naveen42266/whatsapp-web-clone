@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import { whatsappStatusData } from "../../../json";
 import moment from "moment";
 import LockIcon from '@mui/icons-material/Lock';
-import { WhatsappContext } from "../../../pages/whatsapp-context";
+import { WhatsappContext } from "../../../useContext";
 
 interface StatusProps {
     tab: string;

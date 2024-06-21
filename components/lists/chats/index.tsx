@@ -16,7 +16,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import moment from "moment";
-import { WhatsappContext } from "@/pages/whatsapp-context";
+import { WhatsappContext } from "../../../useContext";
 interface ChatsProps {
     tab: string;
     handleChatUser: (user: string) => void;

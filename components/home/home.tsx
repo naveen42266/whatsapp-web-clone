@@ -3,14 +3,14 @@ import ChatDetails from "../detail/chat";
 import DetailComponent from "../detail";
 import TabsComponent from "../tabs";
 import ListComponent from "../lists";
-import { WhatsappContext } from "@/pages/whatsapp-context";
+import { WhatsappContext } from "../../useContext";
 
 export default function Home() {
     const [selectedTab, setSelectedTab] = useState<string>('chats');
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
     // const [keyWord, setKeyWork] = useState<DetailModel>()
     function handleDetailScreen() {
-        if (whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') {
+        if ((whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') && whatsapp?.tabSection?.user !=='' ) {
             return <ChatDetails user={whatsapp?.tabSection?.user || ''} />
         }
         return <DetailComponent />

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { WhatsappContext } from "./whatsapp-context";
-import Home from "@/components/home/home";
-import Status from "@/components/status";
+import { WhatsappContext } from "../useContext";
+import Status from "../components/status";
+import Home from "../components/home/home";
 export const data = 
   {
     status: {

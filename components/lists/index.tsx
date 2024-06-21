@@ -14,7 +14,7 @@ import KeyboardShortcuts from "./settings/keyboardShotcuts";
 import Privacy from "./settings/privacy";
 import SecurityNotifications from "./settings/account/securityNotifications";
 import RequestAccountInfo from "./settings/account/requestAccountInfo";
-import { WhatsappContext } from "@/pages/whatsapp-context";
+import { WhatsappContext } from "../../useContext";
 
 interface ListComponentProps {
     tab: string;

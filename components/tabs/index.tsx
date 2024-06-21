@@ -4,7 +4,7 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { WhatsappContext } from "../../pages/whatsapp-context";
+import { WhatsappContext } from "../../useContext";
 interface TabsComponentProps {
     selectedTab: (tab: string) => void;
 }
