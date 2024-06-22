@@ -26,8 +26,9 @@ const Status = () => {
             }
         }));
     }
+    // https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg
     return (
-        <div className="h-screen w-full overflow-y-hidden relative" style={{ backgroundImage: 'url(https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg)' }}>
+        <div className="h-screen w-full overflow-y-hidden relative" style={{ backgroundImage: `url(${whatsapp?.status?.status || 'https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg'})` }}>
             <div className="grid grid-cols-12 text-white">
                 <div className="col-span-4 relative">
                     <div className="absolute inset-0 bg-black opacity-80"></div>
@@ -41,7 +42,7 @@ const Status = () => {
                 </div>
                 <div className="col-span-4">
                     <div className="relative">
-                        <img src="https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg" className="h-screen w-full" alt="" />
+                        <img src={whatsapp?.status?.status} className="h-screen w-full" alt="" />
                         <div className="absolute top-4 left-4 right-4 ">
                             <LinearWithValueLabel />
                             <div className="flex justify-between py-4">
@@ -62,7 +63,7 @@ const Status = () => {
                             </div>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40">
-                            <div className="text-center text-white">Captain America 🔥🔥🔥🔥</div>
+                            <div className="text-center text-white">{whatsapp?.status?.content}</div>
                             <div className="h-20"></div>
                         </div>
                     </div>

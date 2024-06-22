@@ -42,7 +42,7 @@ export default function Home() {
                     </div>
                     <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, key: string) => { handleSetTabDetails(key, value) }} /></div>
                 </div>
-                <div className={`h-[100%] hidden sm:block w-0 sm:w-[60%] md:w-[66%] `}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
+                <div className={`h-[100%] hidden sm:block w-0 sm:w-[60%] md:w-[66%] ${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}`}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}
                 </div>
             </div>

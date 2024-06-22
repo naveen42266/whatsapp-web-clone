@@ -5,8 +5,9 @@ import Home from "../components/home/home";
 export const data = 
   {
     status: {
-      user: 'name',
-      status: 'nnnn',
+      user: '',
+      status: '',
+      content: '',
       isStatus: false,
     },
     tab: 'chats',
@@ -21,6 +22,7 @@ export default function App() {
   const [whatsapp, setWhatsapp] = useState(data)
 
   return (
+    //chat screen bg img is overlaping
     <WhatsappContext.Provider value={{ whatsapp, setWhatsapp }}>
       {whatsapp?.status?.isStatus ? <Status /> : <Home />}    
     </WhatsappContext.Provider>

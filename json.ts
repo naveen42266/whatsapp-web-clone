@@ -132,42 +132,62 @@ export const whatsappStatusData = [
   {
     name: "Nithesh",
     updated: "2024-05-25T14:23:00Z",
+    content: 'Traveler',
+    status: 'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3BmLTE0LWx1a2VzdGFja3Bvb2xlOS1jb29sLXJvYWQtZi1qb2I1ODAuanBn.jpg'
   },
   {
     name: "Balaji",
     updated: "2024-05-25T15:00:00Z",
+    content: 'Nature Beauty',
+    status: 'https://wallpaper.forfun.com/fetch/c5/c5b1810ebc9bd6aafa31c757b5efc687.jpeg'
   },
   {
     name: "Dharani",
     updated: "2024-05-25T16:30:00Z",
+    content: 'Adobe Illustrator',
+    status: 'https://cdn.pixabay.com/photo/2023/07/25/10/07/ai-generated-8148716_640.png'
   },
   {
     name: "Sanjay",
     updated: "2024-05-25T17:45:00Z",
+    content: 'South indian No.1 Designer',
+    status: 'https://i.pinimg.com/564x/6b/29/44/6b2944da0a46afc43632525d0aa868e2.jpg'
   },
   {
     name: "Varun",
     updated: "2024-05-25T18:10:00Z",
+    content: 'Train Vlogs',
+    status: 'https://w0.peakpx.com/wallpaper/929/270/HD-wallpaper-beautiful-scenery-mobile-beautiful-sky.jpg'
   },
   {
     name: "Thanush",
     updated: "2024-05-25T19:20:00Z",
+    content: 'Dream',
+    status: 'https://preview.redd.it/eerie-and-fantasy-wallpapers-for-your-mobile-devices-v0-w9wa06o7q0oa1.jpg?width=1080&crop=smart&auto=webp&s=d78204730a75bfbc799bad251e9f1171278f62c9'
   },
   {
     name: "Praveen",
     updated: "2024-05-25T20:30:00Z",
+    content: 'Designer',
+    status: 'https://i.pinimg.com/564x/6b/29/44/6b2944da0a46afc43632525d0aa868e2.jpg'
   },
   {
     name: "Yukendran",
     updated: "2024-05-25T21:15:00Z",
+    content: 'Travelling On',
+    status: 'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3BmLTE0LWx1a2VzdGFja3Bvb2xlOS1jb29sLXJvYWQtZi1qb2I1ODAuanBn.jpg'
   },
   {
     name: "Gowsinathan",
     updated: "2024-05-25T22:05:00Z",
+    content: 'Captain America 🔥🔥🔥🔥',
+    status: "https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg"
   },
   {
     name: "Saran",
     updated: "2024-05-25T23:00:00Z",
+    content: 'Kodaikanal Dairies',
+    status: 'https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?cs=srgb&dl=pexels-8moments-1266810.jpg&fm=jpg'
   },
 ];
 

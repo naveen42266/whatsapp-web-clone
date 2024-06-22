@@ -29,13 +29,14 @@ const Status: React.FC<StatusProps> = ({ tab }) => {
         return whatsappStatusData
     }
 
-    function handleStatus(user: string, status: string) {
+    function handleStatus(user: string, status: string, content:string) {
         setWhatsapp((prevStatus: { status: any; }) => ({
             ...prevStatus,
             status: {
                 ...prevStatus.status,
                 user: user,
                 status: status,
+                content: content,
                 isStatus: true
             }
         }));
@@ -60,14 +61,14 @@ const Status: React.FC<StatusProps> = ({ tab }) => {
                 <div className="text-base pt-[30px] pl-8 pb-4 text-[#008069]">RECENT</div>
                 {handleFilteredByLatest()?.map((each, index) => {
                     return (
-                        <div key={index} className="cursor-pointer hover:bg-[#f5f6f6]" onClick={() => { handleStatus(each?.name, "https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?cs=srgb&dl=pexels-8moments-1266810.jpg&fm=jpg") }}>
+                        <div key={index} className="cursor-pointer hover:bg-[#f5f6f6]" onClick={() => { handleStatus(each?.name, each?.status , each?.content) }}>
                             <div className="flex">
                                 <div className="w-[15%]"></div>
                                 <div className="border-t border-[#e9edef] w-[85%]"></div>
                             </div>
                             <div className="flex justify-items-center items-center px-4 py-3">
                                 <div className="border-2 border-[#25d366] rounded-full p-[1px]">
-                                    <Avatar alt="Naveen" src={'https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?cs=srgb&dl=pexels-8moments-1266810.jpg&fm=jpg'} sx={{ width: 40, height: 40 }} />
+                                    <Avatar alt="Naveen" src={each?.status} sx={{ width: 40, height: 40 }} />
                                 </div>
                                 <div className="px-3">
                                     <div className="text-base text-[#3b4a54]">{each?.name}</div>
