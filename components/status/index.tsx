@@ -42,7 +42,7 @@ const Status = () => {
                 </div>
                 <div className="col-span-4">
                     <div className="relative">
-                        <img src={whatsapp?.status?.status} className="h-screen w-full" alt="" />
+                        <img loading="lazy" src={whatsapp?.status?.status} className="h-screen w-full" alt="" />
                         <div className="absolute top-4 left-4 right-4 ">
                             <LinearWithValueLabel />
                             <div className="flex justify-between py-4">

@@ -4,13 +4,14 @@ import DetailComponent from "../detail";
 import TabsComponent from "../tabs";
 import ListComponent from "../lists";
 import { WhatsappContext } from "../../useContext";
+import UserDetails from "../userDetails";
 
 export default function Home() {
     const [selectedTab, setSelectedTab] = useState<string>('chats');
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
     // const [keyWord, setKeyWork] = useState<DetailModel>()
     function handleDetailScreen() {
-        if ((whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') && whatsapp?.tabSection?.user !=='' ) {
+        if ((whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') && whatsapp?.tabSection?.user !== '') {
             return <ChatDetails user={whatsapp?.tabSection?.user || ''} />
         }
         return <DetailComponent />
@@ -30,7 +31,7 @@ export default function Home() {
     //     if (selectedTab != 'chats')
     //         setKeyWork({ key: '', value: '' })
     // }, [selectedTab])
-    console.log(whatsapp)
+    // console.log(whatsapp)
     return (
         <div className="h-screen w-full relative overflow-y-hidden">
             <div className="bg-[#00a884] h-[17.5%] w-full"></div>
@@ -42,8 +43,11 @@ export default function Home() {
                     </div>
                     <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, key: string) => { handleSetTabDetails(key, value) }} /></div>
                 </div>
-                <div className={`h-[100%] hidden sm:block w-0 sm:w-[60%] md:w-[66%] ${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}`}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
+                <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '} ${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}`}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}
+                </div>
+                <div className={`h-[100%] sm:w-[28%] md:w-[30%] ${whatsapp?.userProfile ? 'block' : "hidden"}`}>
+                    <UserDetails />
                 </div>
             </div>
         </div>

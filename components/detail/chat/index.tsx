@@ -6,6 +6,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import AddIcon from '@mui/icons-material/Add';
 import MicIcon from '@mui/icons-material/Mic';
 import TextField from "@mui/material/TextField";
+import { WhatsappContext } from "../../../useContext";
 
 interface ChatDetailsProps {
     user: string;
@@ -38,13 +39,19 @@ const messages = [
     { sender: 'other', text: 'Sure thing! 👍', time: '2:30 PM' },
 ];
 const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
+    const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext)
+
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         if (index === 0) return true;
         return messages[index].sender !== messages[index - 1].sender;
     };
+    function handleUserDetails(){
+        setWhatsapp({ ...whatsapp, userProfile: true });
+    }
+
     return (
         <div className="h-screen w-full"> {/*style={{ backgroundImage: 'url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png)' }}*/}
-            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer">
+            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={()=>{handleUserDetails()}}>
                 <div className="flex items-center gap-3">
                     <Avatar alt="Naveen" src={''} sx={{ width: "42px", height: "42px" }} />
                     <div>

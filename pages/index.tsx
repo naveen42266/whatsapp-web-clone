@@ -14,8 +14,8 @@ export const data =
     tabSection:{
       title:'',
       user:''
-    }
-    
+    },
+    userProfile: false
   }
 
 export default function App() {
