@@ -13,7 +13,8 @@ export const data =
     tab: 'chats',
     tabSection:{
       title:'',
-      user:''
+      user:'',
+      mobile:''
     },
     userProfile: false
   }

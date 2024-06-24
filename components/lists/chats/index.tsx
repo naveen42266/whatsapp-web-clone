@@ -19,7 +19,7 @@ import moment from "moment";
 import { WhatsappContext } from "../../../useContext";
 interface ChatsProps {
     tab: string;
-    handleChatUser: (user: string) => void;
+    handleChatUser: (user: string,mobile: string) => void;
 }
 const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
@@ -143,7 +143,7 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
         }
         return <div className="flex items-center gap-1"></div>
     }
-
+    console.log(ChatDetails,'ChatDetails')
     return (
         <div className="h-screen w-full">
             <div className="sticky top-0 bg-white">
@@ -228,7 +228,7 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
             <div className="h-[74%] w-full overflow-y-scroll custom-scroll">
                 {handleChats()?.participants?.map((each, index) => {
                     return (
-                        <div key={index} className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user==each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })} onClick={() => { handleChatUser(each?.name),setPerson(each?.name) }}>
+                        <div key={index} className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user==each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })} onClick={() => { handleChatUser(each?.name,each?.id),setPerson(each?.name) }}>
                             <div className="col-span-2 items-center">
                                 <Avatar alt="Naveen" src={ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.profile ?? ''} sx={{ width: 50, height: 50 }} />
                             </div>

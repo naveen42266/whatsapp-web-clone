@@ -17,14 +17,16 @@ export default function Home() {
         return <DetailComponent />
     }
 
-    function handleSetTabDetails(title: string, user: string) {
-        setWhatsapp((prevStatus: { tabSection: any; }) => ({
+    function handleSetTabDetails(title: string, user: string,mobile: string) {
+        setWhatsapp((prevStatus: { tabSection: any; userProfile:boolean}) => ({
             ...prevStatus,
             tabSection: {
                 ...prevStatus.tabSection,
                 title: title,
-                user: user
-            }
+                user: user,
+                mobile: mobile
+            },
+            userProfile: false
         }));
     }
     // useEffect(() => {
@@ -41,7 +43,7 @@ export default function Home() {
                     <div className="h-[100%] w-[12%]">
                         <TabsComponent selectedTab={(tab: string) => { setSelectedTab(tab) }} />
                     </div>
-                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, key: string) => { handleSetTabDetails(key, value) }} /></div>
+                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string,mobile: string, key: string) => { handleSetTabDetails(key, value,mobile) }} /></div>
                 </div>
                 <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '} ${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}`}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}

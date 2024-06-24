@@ -18,7 +18,7 @@ import { WhatsappContext } from "../../useContext";
 
 interface ListComponentProps {
     tab: string;
-    handleDetailContent: (value: string, key: string) => void;
+    handleDetailContent: (value: string,mobile: string, key: string) => void;
 }
 
 const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) => {
@@ -29,7 +29,7 @@ const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) =
     const [logout, setLogout] = useState<boolean>(false)
     function selectedTab() {
         if (whatsapp?.tab === 'chats') {
-            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string) => { handleDetailContent(user, 'chat') }} />
+            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string ,mobile: string) => { handleDetailContent(user,mobile , 'chat') }} />
         }
         else if (whatsapp?.tab === 'communities') {
             return <Communities tab={whatsapp?.tab} />
