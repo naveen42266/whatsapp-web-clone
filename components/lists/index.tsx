@@ -15,13 +15,20 @@ import Privacy from "./settings/privacy";
 import SecurityNotifications from "./settings/account/securityNotifications";
 import RequestAccountInfo from "./settings/account/requestAccountInfo";
 import { WhatsappContext } from "../../useContext";
+import LastSeenAndOnline from "./settings/privacy/lastseenAndOnline";
+import ProfilePhoto from "./settings/privacy/profilePhoto";
+import About from "./settings/privacy/about";
+import Groups from "./settings/privacy/groups";
+import BlockedContacts from "./settings/privacy/blockedContacts";
+import DefaultMessageTimer from "./settings/privacy/defaultMessageTimer";
+import AppLock from "./settings/privacy/appLock";
 
 interface ListComponentProps {
     tab: string;
-    handleDetailContent: (value: string,mobile: string, key: string) => void;
+    handleDetailContent: (value: string, mobile: string, key: string) => void;
 }
 
-const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) => {
+const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
 
     const [switchScreen, setSwitchScreen] = useState<string>('')
@@ -29,7 +36,7 @@ const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) =
     const [logout, setLogout] = useState<boolean>(false)
     function selectedTab() {
         if (whatsapp?.tab === 'chats') {
-            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string ,mobile: string) => { handleDetailContent(user,mobile , 'chat') }} />
+            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string) => { handleDetailContent(user, mobile, 'chat') }} />
         }
         else if (whatsapp?.tab === 'communities') {
             return <Communities tab={whatsapp?.tab} />
@@ -74,7 +81,7 @@ const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) =
             </div>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'privacy') {
-            return <Privacy tab={"privacy"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <Privacy tab={"privacy"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToPrivacy={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && logout) {
             return <div>
@@ -101,6 +108,27 @@ const ListComponent: React.FC<ListComponentProps> = ({  handleDetailContent }) =
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'Request account info') {
             return <RequestAccountInfo tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('account') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Last seen and online') {
+            return <LastSeenAndOnline tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Profile photo') {
+            return <ProfilePhoto tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'About') {
+            return <About tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Default message timer') {
+            return <DefaultMessageTimer tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Groups') {
+            return <Groups tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Blocked contacts') {
+            return <BlockedContacts tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'App lock') {
+            return <AppLock tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
         }
     }
 
