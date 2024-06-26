@@ -6,9 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 interface ChatSettingsProps {
     tab: string;
     handleBack: (value: string) => void;
+    handleToChatSettings: (value: string) => void;
 }
 
-const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack }) => {
+const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack, handleToChatSettings }) => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     return (
         <div className="h-full w-full bg-[#f0f2f5]">
@@ -40,7 +41,7 @@ const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack }) => {
                 <div className="h-3 w-full bg-[#f0f2f5]"></div>
                 <div className="bg-white">
                     <div className="text-sm text-[#667781] py-4 px-7">Chat settings</div>
-                    <div className="flex justify-between items-center px-6 py-4 border-b border-[#e9edef]">
+                    <div className="flex justify-between items-center px-6 py-4 border-b border-[#e9edef]" onClick={()=>{handleToChatSettings('Media auto-download')}}>
                         <div className="max-w-[75%]">
                             <div className="text-[17px] text-[#111b21]">Media auto-download</div>
                         </div>

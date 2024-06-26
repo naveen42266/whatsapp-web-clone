@@ -22,6 +22,8 @@ import Groups from "./settings/privacy/groups";
 import BlockedContacts from "./settings/privacy/blockedContacts";
 import DefaultMessageTimer from "./settings/privacy/defaultMessageTimer";
 import AppLock from "./settings/privacy/appLock";
+import MediaAutoDownload from "./settings/chats/mediaAutoDownload";
+import ChannelReports from "./settings/help/channelReports";
 
 interface ListComponentProps {
     tab: string;
@@ -60,13 +62,13 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToOpen={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'help') {
-            return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); } } handleToHelp={(value: string)=>{setSwitchScreen(value)} } />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'notifications') {
             return <Notifications tab={"notifications"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'chats') {
-            return <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToChatSettings={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && keyboardShortcutsModal) {
             return <div>
@@ -129,6 +131,12 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'App lock') {
             return <AppLock tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('privacy') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Media auto-download') {
+            return <MediaAutoDownload tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('chats') }} />
+        }
+        else if (whatsapp?.tab === 'settings' && switchScreen == 'Channel reports') {
+            return <ChannelReports tab={switchScreen} handleBack={(value: string) => { setSwitchScreen('help') }} />
         }
     }
 

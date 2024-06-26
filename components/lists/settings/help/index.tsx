@@ -6,8 +6,9 @@ import Checkbox from '@mui/material/Checkbox';
 interface HelpProps {
     tab: string;
     handleBack: (value: string) => void;
+    handleToHelp: (value: string) => void;
 }
-const Help: React.FC<HelpProps> = ({ tab, handleBack }) => {
+const Help: React.FC<HelpProps> = ({ tab, handleBack, handleToHelp }) => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     return (
@@ -22,10 +23,10 @@ const Help: React.FC<HelpProps> = ({ tab, handleBack }) => {
                 </div>
                 <div className="text-center text-sm text-[#667781] py-4">Version 2.3000.1013817929</div>
                 <div className="hover:bg-[#f5f6f6] cursor-pointer">
-                    <div className="flex items-center px-6 py-4 gap-6">
+                    <a href="https://faq.whatsapp.com/?cms_platform=web&locale=en_US" className="flex items-center px-6 py-4 gap-6" target="_blank" rel="noopener noreferrer">
                         <div><HelpIcon fontSize="medium" className="text-[#54656f]" /></div>
                         <div className="text-[17px] text-[#111b21]">Help Center</div>
-                    </div>
+                    </a>
                     <div className="flex">
                         <div className="w-[16%]"></div>
                         <div className="w-[84%] border border-[#e9edef]"></div>
@@ -42,17 +43,17 @@ const Help: React.FC<HelpProps> = ({ tab, handleBack }) => {
                     </div>
                 </div>
                 <div className="hover:bg-[#f5f6f6] cursor-pointer">
-                    <div className="flex items-center px-6 py-4 gap-6">
+                    <a href="https://www.whatsapp.com/legal/?lg=en" className="flex items-center px-6 py-4 gap-6" target="_blank" rel="noopener noreferrer">
                         <div><svg color="#54656f" viewBox="0 0 24 24" height="24" fill="none"><title>settings-document</title><path fill-rule="evenodd" clip-rule="evenodd" d="M6 2C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8.83C20 8.3 19.79 7.79 19.41 7.42L14.58 2.59C14.21 2.21 13.7 2 13.17 2H6ZM13 8V3.5L18.5 9H14C13.45 9 13 8.55 13 8ZM8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7.44772 14 8 14H16C16.5523 14 17 13.5523 17 13C17 12.4477 16.5523 12 16 12H8ZM14 17C14 16.4477 13.5523 16 13 16H8C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H13C13.5523 18 14 17.5523 14 17Z" fill="currentColor"></path></svg></div>
                         <div className="text-[17px] text-[#111b21]">Terms and Privacy Policy</div>
-                    </div>
+                    </a>
                     <div className="flex">
                         <div className="w-[16%]"></div>
                         <div className="w-[84%] border border-[#e9edef]"></div>
                     </div>
                 </div>
                 <div className="hover:bg-[#f5f6f6] cursor-pointer">
-                    <div className="flex items-center px-6 py-4 gap-6">
+                    <div className="flex items-center px-6 py-4 gap-6" onClick={()=>{handleToHelp('Channel reports')}}>
                         <div><svg color="#54656f" viewBox="0 0 24 24" height="24" width="24" fill="none"><title>message-report</title><path fill-rule="evenodd" clip-rule="evenodd" d="M0.941247 5.52617L2.99693 8.84848V17.3333C2.99693 18.8061 4.19083 20 5.66359 20H19.3303C20.803 20 21.9969 18.8061 21.9969 17.3333V6.66667C21.9969 5.19391 20.803 4 19.3303 4H1.79162C1.00821 4 0.529036 4.85997 0.941247 5.52617ZM4.99693 8.27977V17.3333C4.99693 17.7015 5.2954 18 5.66359 18H19.3303C19.6985 18 19.9969 17.7015 19.9969 17.3333V6.66667C19.9969 6.29848 19.6985 6 19.3303 6H3.58632L4.99693 8.27977Z" fill="currentColor"></path><path d="M13.1061 15.7125C12.9144 15.9042 12.6769 16 12.3936 16C12.1102 16 11.8727 15.9042 11.6811 15.7125C11.4894 15.5208 11.3936 15.2833 11.3936 15C11.3936 14.7167 11.4894 14.4792 11.6811 14.2875C11.8727 14.0958 12.1102 14 12.3936 14C12.6769 14 12.9144 14.0958 13.1061 14.2875C13.2977 14.4792 13.3936 14.7167 13.3936 15C13.3936 15.2833 13.2977 15.5208 13.1061 15.7125Z" fill="currentColor"></path><path d="M13.1061 12.7125C12.9144 12.9042 12.6769 13 12.3936 13C12.2602 13 12.1311 12.975 12.0061 12.925C11.8811 12.875 11.7727 12.8042 11.6811 12.7125C11.5894 12.6208 11.5186 12.5125 11.4686 12.3875C11.4186 12.2625 11.3936 12.1333 11.3936 12V9C11.3936 8.71667 11.4894 8.47917 11.6811 8.2875C11.8727 8.09583 12.1102 8 12.3936 8C12.6769 8 12.9144 8.09583 13.1061 8.2875C13.2977 8.47917 13.3936 8.71667 13.3936 9V12C13.3936 12.2833 13.2977 12.5208 13.1061 12.7125Z" fill="currentColor"></path></svg></div>
                         <div className="text-[17px] text-[#111b21]">Channel reports</div>
                     </div>
