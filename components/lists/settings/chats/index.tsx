@@ -20,7 +20,7 @@ const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack, handleToCh
                         <div className="text-base capitalize">{tab}</div>
                     </div>
                     <div className="text-sm text-[#667781] py-4 px-7">Display</div>
-                    <div className="flex justify-between items-center  px-6 py-4 border-b border-[#e9edef]">
+                    <div className="flex justify-between items-center  px-6 py-4 border-b border-[#e9edef]" onClick={()=>{handleToChatSettings("Theme")}}>
                         <div className="max-w-[75%]">
                             <div className="text-[17px] text-[#111b21]">Theme</div>
                             <div className="text-sm text-[#54656f]">System default</div>
@@ -29,7 +29,7 @@ const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack, handleToCh
                             <ArrowForwardIosIcon fontSize="small" className="text-[#54656f]" />
                         </div>
                     </div>
-                    <div className="flex justify-between items-center  px-6 py-4">
+                    <div className="flex justify-between items-center  px-6 py-4" onClick={()=>{handleToChatSettings("Wallpaper")}}>
                         <div className="max-w-[75%]">
                             <div className="text-[17px] text-[#111b21]">Wallpaper</div>
                         </div>
