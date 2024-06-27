@@ -188,8 +188,8 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
                                 </div>
                             </div>
                             <div className='flex justify-end gap-4'>
-                                <span className='text-[#008069] rounded-full bg-white py-2 px-5 cursor-pointer border border-slate-300' onClick={() => { switchScreen == 'Theme' ?? false; setSwitchScreen('help') }}>Cancel</span>
-                                <span className='text-white rounded-full bg-[#008069] py-2 px-5 cursor-pointer' onClick={() => { switchScreen == 'Theme' ?? false; setSwitchScreen('help') }}>OK</span>
+                                <span className='text-[#008069] rounded-full bg-white py-2 px-5 cursor-pointer border border-slate-300' onClick={() => { switchScreen == 'Theme' ?? false; setSwitchScreen('chats') }}>Cancel</span>
+                                <span className='text-white rounded-full bg-[#008069] py-2 px-5 cursor-pointer' onClick={() => { switchScreen == 'Theme' ?? false; setSwitchScreen('chats') }}>OK</span>
                             </div>
                         </div>
                     </div>

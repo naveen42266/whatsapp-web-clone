@@ -9,16 +9,18 @@ import UserDetails from "../userDetails";
 export default function Home() {
     const [selectedTab, setSelectedTab] = useState<string>('chats');
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
-    // const [keyWord, setKeyWork] = useState<DetailModel>()
     function handleDetailScreen() {
-        if ((whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') && whatsapp?.tabSection?.user !== '') {
+        if ((whatsapp?.tabSection?.title == 'chat' || whatsapp?.tab == 'chats') && whatsapp?.tabSection?.user !== '' ) {
             return <ChatDetails user={whatsapp?.tabSection?.user || ''} />
         }
+        // else if (whatsapp?.wallpaper?.isWallpaper) {
+        //     return <div className="bgImg"></div>
+        // }
         return <DetailComponent />
     }
 
-    function handleSetTabDetails(title: string, user: string,mobile: string) {
-        setWhatsapp((prevStatus: { tabSection: any; userProfile:boolean}) => ({
+    function handleSetTabDetails(title: string, user: string, mobile: string) {
+        setWhatsapp((prevStatus: { tabSection: any; userProfile: boolean }) => ({
             ...prevStatus,
             tabSection: {
                 ...prevStatus.tabSection,
@@ -29,11 +31,6 @@ export default function Home() {
             userProfile: false
         }));
     }
-    // useEffect(() => {
-    //     if (selectedTab != 'chats')
-    //         setKeyWork({ key: '', value: '' })
-    // }, [selectedTab])
-    // console.log(whatsapp)
     return (
         <div className="h-screen w-full relative overflow-y-hidden">
             <div className="bg-[#00a884] h-[17.5%] w-full"></div>
@@ -43,9 +40,9 @@ export default function Home() {
                     <div className="h-[100%] w-[12%]">
                         <TabsComponent selectedTab={(tab: string) => { setSelectedTab(tab) }} />
                     </div>
-                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string,mobile: string, key: string) => { handleSetTabDetails(key, value,mobile) }} /></div>
+                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, mobile: string, key: string) => { handleSetTabDetails(key, value, mobile) }} /></div>
                 </div>
-                <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '} ${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}`}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
+                <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '} ${whatsapp?.tabSection?.title == 'chat' ? whatsapp?.wallpaper?.bgImage : ''}`} style={{backgroundColor: whatsapp?.wallpaper?.hoverColor ? whatsapp?.wallpaper?.hoverColor : whatsapp?.wallpaper?.color}}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}
                 </div>
                 <div className={`h-[100%] sm:w-[28%] md:w-[30%] ${whatsapp?.userProfile ? 'block' : "hidden"}`}>

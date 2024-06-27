@@ -16,7 +16,13 @@ export const data =
       user:'',
       mobile:''
     },
-    userProfile: false
+    userProfile: false,
+    wallpaper:{
+      color:'#EFEAE2',
+      hoverColor:'',
+      isWallpaper:false,
+      bgImage:'bgImg'
+    }
   }
 
 export default function App() {

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Checkbox from '@mui/material/Checkbox';
+import { WhatsappContext } from "@/useContext";
 
 interface ChatSettingsProps {
     tab: string;
@@ -11,6 +12,17 @@ interface ChatSettingsProps {
 
 const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack, handleToChatSettings }) => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext);
+
+    function handleWallpaper(value: boolean) {
+        setWhatsapp((prevStatus: { wallpaper: any; }) => ({
+            ...prevStatus,
+            wallpaper: {
+                ...prevStatus.wallpaper,
+                isWallpaper: value,
+            }
+        }));
+    }
     return (
         <div className="h-full w-full bg-[#f0f2f5]">
             <div className="h-[70%] w-full">
@@ -29,7 +41,7 @@ const ChatSettings: React.FC<ChatSettingsProps> = ({ tab, handleBack, handleToCh
                             <ArrowForwardIosIcon fontSize="small" className="text-[#54656f]" />
                         </div>
                     </div>
-                    <div className="flex justify-between items-center  px-6 py-4" onClick={()=>{handleToChatSettings("Wallpaper")}}>
+                    <div className="flex justify-between items-center  px-6 py-4" onClick={()=>{handleToChatSettings("Wallpaper"),handleWallpaper(true)}}>
                         <div className="max-w-[75%]">
                             <div className="text-[17px] text-[#111b21]">Wallpaper</div>
                         </div>
