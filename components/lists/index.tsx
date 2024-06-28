@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Chats from "../lists/chats";
 import Communities from "../lists/communities";
 import Status from "../lists/status";
@@ -30,6 +30,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import Wallpaper from "./settings/chats/wallpaper";
+import ChannelsList from "./channels/channelsList";
 interface ListComponentProps {
     tab: string;
     handleDetailContent: (value: string, mobile: string, key: string) => void;
@@ -37,10 +38,10 @@ interface ListComponentProps {
 
 const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
-
     const [switchScreen, setSwitchScreen] = useState<string>('')
     const [keyboardShortcutsModal, setKeyboardShortcutsModal] = useState<boolean>(false)
     const [logout, setLogout] = useState<boolean>(false)
+    useEffect(() => { setSwitchScreen('') }, [whatsapp?.tab])
     function selectedTab() {
         if (whatsapp?.tab === 'chats') {
             return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string) => { handleDetailContent(user, mobile, 'chat') }} />
@@ -51,33 +52,33 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         else if (whatsapp?.tab === 'status') {
             return <Status tab={whatsapp?.tab} />
         }
-        else if (whatsapp?.tab === 'channels') {
-            return <Channels tab={whatsapp?.tab} />
+        else if (whatsapp?.tab === 'channels' && switchScreen != 'Find channels') {
+            return <Channels tab={whatsapp?.tab} handleChannelsList={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && !keyboardShortcutsModal && !logout) {
-            return <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout), selectedTab() } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value), selectedTab() } else { setKeyboardShortcutsModal(!keyboardShortcutsModal), selectedTab() } }} />
+            return <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout) } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value) } else { setKeyboardShortcutsModal(!keyboardShortcutsModal) } }} />
         }
         else if (whatsapp?.tab === 'profile' && switchScreen == '') {
             return <Profile tab={whatsapp?.tab} from={'tab'} handleBack={(value: string) => { }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'profile') {
-            return <Profile tab={'profile'} from={'settings'} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <Profile tab={'profile'} from={'settings'} handleBack={(value: string) => { setSwitchScreen('') }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'account') {
-            return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToOpen={(value: string) => { setSwitchScreen(value) }} />
+            return <Account tab={"account"} handleBack={(value: string) => { setSwitchScreen('') }} handleToOpen={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'help') {
-            return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
+            return <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen('') }} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'notifications') {
-            return <Notifications tab={"notifications"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab() }} />
+            return <Notifications tab={"notifications"} handleBack={(value: string) => { setSwitchScreen('') }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'chats') {
-            return <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToChatSettings={(value: string) => { setSwitchScreen(value) }} />
+            return <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen('') }} handleToChatSettings={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && keyboardShortcutsModal) {
             return <div>
-                <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value !== 'keyboardShotcuts') { setSwitchScreen(value), selectedTab() } else { setKeyboardShortcutsModal(!keyboardShortcutsModal), selectedTab() } }} />
+                <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value !== 'keyboardShotcuts') { setSwitchScreen(value) } else { setKeyboardShortcutsModal(!keyboardShortcutsModal) } }} />
                 <Modal open={keyboardShortcutsModal} onClose={() => { setKeyboardShortcutsModal(!keyboardShortcutsModal) }}>
                     <div className="flex justify-center items-center h-[100%]">
                         <div className="bg-[#f7f8fa] h-[90%] w-[75%] py-4 pl-8 pr-3">
@@ -88,11 +89,11 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             </div>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'privacy') {
-            return <Privacy tab={"privacy"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToPrivacy={(value: string) => { setSwitchScreen(value) }} />
+            return <Privacy tab={"privacy"} handleBack={(value: string) => { setSwitchScreen('') }} handleToPrivacy={(value: string) => { setSwitchScreen(value) }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && logout) {
             return <div>
-                <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout), selectedTab() } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value), selectedTab() } else { setKeyboardShortcutsModal(!keyboardShortcutsModal), selectedTab() } }} />
+                <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout) } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value) } else { setKeyboardShortcutsModal(!keyboardShortcutsModal) } }} />
                 <Modal open={logout} onClose={() => { setLogout(!logout) }}>
                     <div className="flex justify-center items-center h-[100%]">
                         <div className="bg-[#f7f8fa] h-[30%] w-[35%] py-4 pl-8 pr-3 flex flex-col justify-between">
@@ -145,7 +146,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'Contact Us') {
             return <div>
-                <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
+                <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen('')}} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
                 <Modal open={switchScreen == 'Contact Us' ?? true} onClose={() => { switchScreen == 'Contact Us' ?? false; setSwitchScreen('help') }}>
                     <div className="flex justify-center items-center h-[100%]">
                         <div className="bg-[#f7f8fa] h-[55%] w-[35%] p-6 flex flex-col justify-between">
@@ -166,7 +167,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'Theme') {
             return <div>
-                <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen(''), selectedTab(); }} handleToChatSettings={(value: string) => { setSwitchScreen(value) }} />
+                <ChatSettings tab={"chats"} handleBack={(value: string) => { setSwitchScreen('') }} handleToChatSettings={(value: string) => { setSwitchScreen(value) }} />
                 <Modal open={switchScreen == 'Theme' ?? true} onClose={() => { switchScreen == 'Theme' ?? false; setSwitchScreen('help') }}>
                     <div className="flex justify-center items-center h-[100%]">
                         <div className="bg-[#f7f8fa] h-[45%] w-[35%] p-6 flex flex-col justify-between">
@@ -198,6 +199,9 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'Wallpaper') {
             return <Wallpaper tab={"Set chat wallpaper"} handleBack={(value: string) => { setSwitchScreen('chats') }} />
+        }
+        else if (whatsapp?.tab === 'channels' && switchScreen == 'Find channels') {
+            return <ChannelsList tab={switchScreen} handleChannel={(channel : any) => { }} handleBack={(value: string) => {setSwitchScreen('channels') }} />
         }
     }
 

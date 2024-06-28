@@ -1,10 +1,12 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import { channelNames } from "@/json";
+import { channelNames, channels } from "../../../json";
 interface ChannelsProps {
     tab: string;
+    handleChannelsList: (value: string) => void;
 }
-const Channels: React.FC<ChannelsProps> = ({ tab }) => {
+
+const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList }) => {
     const groups = Math.ceil(channelNames.length / 3);
 
     return (
@@ -15,7 +17,7 @@ const Channels: React.FC<ChannelsProps> = ({ tab }) => {
             </div>
             <div className="text-center text-[19px] text-[#111b21] mt-4">Stay updated on your favourite topics</div>
             <div className="text-center text-[17px] text-[#667781] py-2">Find channels to follow below</div>
-            <div className="grid grid-cols-11 gap-2 m-4">
+            {/* <div className="grid grid-cols-11 gap-2 m-4">
                 {Array.from({ length: groups }).map((_, groupIndex) => (
                     <React.Fragment key={groupIndex}>
                         <div className="col-span-1"></div>
@@ -34,9 +36,29 @@ const Channels: React.FC<ChannelsProps> = ({ tab }) => {
                         <div className="col-span-1"></div>
                     </React.Fragment>
                 ))}
-            </div>
-            <div className="flex flex-col justify-center items-center my-6">
-                <span className="text-white bg-[#008069] px-4 py-2 rounded-full cursor-pointer">Find Channels</span>
+            </div> */}
+            {channels?.slice(0, 5)?.map((each, index) => {
+                return (
+                    <div key={index} className={`flex items-center cursor-pointer pl-4 bg-white hover:bg-[#f5f6f6] `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { }}>
+                        <div className="">
+                            <Avatar src={each?.profile} alt="Naveen" sx={{ width: 50, height: 50 }} />
+                        </div>
+                        <div className="flex justify-between items-center pl-2 pr-4 w-full border-b border-[#e9edef]">
+                            <div className="flex flex-col justify-between">
+                                <div className="text-[#111b21] text-[17px]">{each?.name}</div>
+                                <div className="text-[#667781] text-xs">{each?.followers} followers</div>
+                            </div>
+                            <div className="flex flex-col justify-center items-center my-5 border border-slate-200 hover:shadow-md rounded-full">
+                                <span className="bg-white text-[#008069] px-4 py-1 rounded-full cursor-pointer">Follow</span>
+                            </div>
+                        </div>
+                        <div className="col-span-2"></div>
+                        <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
+                    </div>
+                )
+            })}
+            <div className="flex flex-col justify-center items-center my-6" onClick={() => { handleChannelsList('Find channels') }}>
+                <span className="text-white bg-[#008069] px-4 py-2 rounded-full cursor-pointer">Discover more</span>
             </div>
         </div>
     )

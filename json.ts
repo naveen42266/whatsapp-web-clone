@@ -192,3 +192,21 @@ export const whatsappStatusData = [
 ];
 
 export const channelNames = ["nature","wild life","photography","travel","food"]
+
+export const channels = [
+  { name: 'M S D', followers: '200M', profile: 'https://images.deccanherald.com/deccanherald%2F2023-10%2F25395b5c-6962-49ae-a564-6e099e82823e%2FSnapinsta_app_385693669_283320344577884_4451666051114348932_n_1080.jpg?rect=0%2C0%2C1012%2C1349' },
+  { name: 'Kohli', followers: '180M', profile: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH4d2KHlqekZyAG-nFmwMrbh_HoRECv0ExQ&s' },
+  { name: 'Rohit', followers: '180M', profile: 'https://www.koimoi.com/wp-content/new-galleries/2024/04/tracing-the-salary-growth-of-rohit-sharma-in-ipl-001.jpg' },
+  { name: 'Gayle', followers: '180M', profile: 'https://d30ny7ijak9wq4.cloudfront.net/s3fs-public/images/story/2023/05/23/chris.jpg' },
+  { name: 'Archer', followers: '150M', profile: 'https://assets.telegraphindia.com/telegraph/2024/Jan/1705481457_new-project-2.jpg' },
+  { name: 'M S D', followers: '200M', profile: 'https://images.deccanherald.com/deccanherald%2F2023-10%2F25395b5c-6962-49ae-a564-6e099e82823e%2FSnapinsta_app_385693669_283320344577884_4451666051114348932_n_1080.jpg?rect=0%2C0%2C1012%2C1349' },
+  { name: 'Kohli', followers: '180M', profile: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH4d2KHlqekZyAG-nFmwMrbh_HoRECv0ExQ&s' },
+  { name: 'Rohit', followers: '180M', profile: 'https://www.koimoi.com/wp-content/new-galleries/2024/04/tracing-the-salary-growth-of-rohit-sharma-in-ipl-001.jpg' },
+  { name: 'Gayle', followers: '180M', profile: 'https://d30ny7ijak9wq4.cloudfront.net/s3fs-public/images/story/2023/05/23/chris.jpg' },
+  { name: 'Archer', followers: '150M', profile: 'https://assets.telegraphindia.com/telegraph/2024/Jan/1705481457_new-project-2.jpg' },
+  { name: 'M S D', followers: '200M', profile: 'https://images.deccanherald.com/deccanherald%2F2023-10%2F25395b5c-6962-49ae-a564-6e099e82823e%2FSnapinsta_app_385693669_283320344577884_4451666051114348932_n_1080.jpg?rect=0%2C0%2C1012%2C1349' },
+  { name: 'Kohli', followers: '180M', profile: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH4d2KHlqekZyAG-nFmwMrbh_HoRECv0ExQ&s' },
+  { name: 'Rohit', followers: '180M', profile: 'https://www.koimoi.com/wp-content/new-galleries/2024/04/tracing-the-salary-growth-of-rohit-sharma-in-ipl-001.jpg' },
+  { name: 'Gayle', followers: '180M', profile: 'https://d30ny7ijak9wq4.cloudfront.net/s3fs-public/images/story/2023/05/23/chris.jpg' },
+  { name: 'Archer', followers: '150M', profile: 'https://assets.telegraphindia.com/telegraph/2024/Jan/1705481457_new-project-2.jpg' }
+]
