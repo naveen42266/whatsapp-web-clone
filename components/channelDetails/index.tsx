@@ -9,7 +9,7 @@ const ChannelDetails = () => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
 
     function handleUserDetails() {
-        setWhatsapp({ ...whatsapp, channelProfile: false });
+        setWhatsapp({ ...whatsapp, channelProfile: false, userProfile: false });
     }
     return (
         <div className="bg-white h-full">

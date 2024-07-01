@@ -17,7 +17,7 @@ export default function Home() {
                 <Channel user={whatsapp?.tabSection?.user || ''} />
             </div>
         }
-        else if ((whatsapp?.tabSection?.title == 'chat' && whatsapp?.tabSection?.user !== '' && whatsapp?.tab !== 'channel') || whatsapp?.tab == 'chats') {
+        else if (whatsapp?.tabSection?.title == 'chat' && whatsapp?.tabSection?.user !== '' && whatsapp?.tab !== 'channel') {
             return <div className={`h-full w-full ${whatsapp?.wallpaper?.bgImage}`}><ChatDetails user={whatsapp?.tabSection?.user || ''} /></div>
         }
         else if ((whatsapp?.tabSection?.title !== 'chat' || whatsapp?.tab !== 'chats') && whatsapp?.wallpaper?.isWallpaper) {
@@ -28,7 +28,7 @@ export default function Home() {
         }
         return <div className="bg-[#EFEAE2] h-full"><DetailComponent /></div>
     }
-console.log(whatsapp,'whatsapp')
+// console.log(whatsapp,'whatsapp')
     function handleSetTabDetails(title: string, user: string, mobile: string) {
         if (title === 'chat') {
             setWhatsapp((prevStatus: { tabSection: any; userProfile: boolean }) => ({
@@ -39,7 +39,8 @@ console.log(whatsapp,'whatsapp')
                     user: user,
                     mobile: mobile
                 },
-                userProfile: false
+                userProfile: false,
+                channelProfile: false,
             }));
         }
         else {
@@ -51,7 +52,8 @@ console.log(whatsapp,'whatsapp')
                     user: user,
                     followers: mobile
                 },
-                channelProfile: false
+                channelProfile: false,
+                userProfile: false
             }));
         }
     }

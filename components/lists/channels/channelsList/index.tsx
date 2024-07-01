@@ -70,7 +70,7 @@ const ChannelsList: React.FC<ChannelsListProps> = ({ tab, handleBack, handleChan
             <div className="h-[73%] w-full overflow-y-scroll custom-scroll">
                 {channels?.map((each, index) => {
                     return (
-                        <div key={index} className={`flex items-center cursor-pointer pl-4 bg-white hover:bg-[#f5f6f6] `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each)}}>
+                        <div key={index} className={`flex items-center cursor-pointer pl-4 ${whatsapp?.tabSection?.user==each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each)}}>
                             <div className="">
                                 <Avatar src={each?.profile} alt="Naveen" sx={{ width: 50, height: 50 }} />
                             </div>

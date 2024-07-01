@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import { channelNames, channels } from "../../../json";
+import { WhatsappContext } from "../../../useContext";
 interface ChannelsProps {
     tab: string;
     handleChannelsList: (value: string) => void;
@@ -9,6 +10,7 @@ interface ChannelsProps {
 
 const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList, handleChannel }) => {
     const groups = Math.ceil(channelNames.length / 3);
+    const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
 
     return (
         <div>
@@ -40,7 +42,7 @@ const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList, handleChan
             </div> */}
             {channels?.slice(0, 5)?.map((each, index) => {
                 return (
-                    <div key={index} className={`flex items-center cursor-pointer pl-4 bg-white hover:bg-[#f5f6f6] `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each) }}>
+                    <div key={index} className={`flex items-center cursor-pointer pl-4 ${whatsapp?.tabSection?.user==each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each) }}>
                         <div className="">
                             <Avatar src={each?.profile} alt="Naveen" sx={{ width: 50, height: 50 }} />
                         </div>
