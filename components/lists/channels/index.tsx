@@ -4,9 +4,10 @@ import { channelNames, channels } from "../../../json";
 interface ChannelsProps {
     tab: string;
     handleChannelsList: (value: string) => void;
+    handleChannel: (channel: any) => void;
 }
 
-const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList }) => {
+const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList, handleChannel }) => {
     const groups = Math.ceil(channelNames.length / 3);
 
     return (
@@ -39,7 +40,7 @@ const Channels: React.FC<ChannelsProps> = ({ tab, handleChannelsList }) => {
             </div> */}
             {channels?.slice(0, 5)?.map((each, index) => {
                 return (
-                    <div key={index} className={`flex items-center cursor-pointer pl-4 bg-white hover:bg-[#f5f6f6] `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { }}>
+                    <div key={index} className={`flex items-center cursor-pointer pl-4 bg-white hover:bg-[#f5f6f6] `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each) }}>
                         <div className="">
                             <Avatar src={each?.profile} alt="Naveen" sx={{ width: 50, height: 50 }} />
                         </div>

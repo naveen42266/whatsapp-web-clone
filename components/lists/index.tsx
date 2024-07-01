@@ -53,7 +53,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             return <Status tab={whatsapp?.tab} />
         }
         else if (whatsapp?.tab === 'channels' && switchScreen != 'Find channels') {
-            return <Channels tab={whatsapp?.tab} handleChannelsList={(value: string) => { setSwitchScreen(value) }} />
+            return <Channels tab={whatsapp?.tab} handleChannelsList={(value: string) => { setSwitchScreen(value); }} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, 'channel') }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && !keyboardShortcutsModal && !logout) {
             return <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout) } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value) } else { setKeyboardShortcutsModal(!keyboardShortcutsModal) } }} />
@@ -146,7 +146,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == 'Contact Us') {
             return <div>
-                <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen('')}} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
+                <Help tab={"help"} handleBack={(value: string) => { setSwitchScreen('') }} handleToHelp={(value: string) => { setSwitchScreen(value) }} />
                 <Modal open={switchScreen == 'Contact Us' ?? true} onClose={() => { switchScreen == 'Contact Us' ?? false; setSwitchScreen('help') }}>
                     <div className="flex justify-center items-center h-[100%]">
                         <div className="bg-[#f7f8fa] h-[55%] w-[35%] p-6 flex flex-col justify-between">
@@ -201,7 +201,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             return <Wallpaper tab={"Set chat wallpaper"} handleBack={(value: string) => { setSwitchScreen('chats') }} />
         }
         else if (whatsapp?.tab === 'channels' && switchScreen == 'Find channels') {
-            return <ChannelsList tab={switchScreen} handleChannel={(channel : any) => { }} handleBack={(value: string) => {setSwitchScreen('channels') }} />
+            return <ChannelsList tab={switchScreen} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, 'channel') }} handleBack={(value: string) => { setSwitchScreen('channels') }} />
         }
     }
 

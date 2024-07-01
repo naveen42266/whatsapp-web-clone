@@ -2,6 +2,7 @@ import { useState } from "react";
 import { WhatsappContext } from "../useContext";
 import Status from "../components/status";
 import Home from "../components/home/home";
+import { channel } from "diagnostics_channel";
 export const data = 
   {
     status: {
@@ -14,9 +15,11 @@ export const data =
     tabSection:{
       title:'',
       user:'',
-      mobile:''
+      mobile:'',
+      followers:''
     },
     userProfile: false,
+    channelProfile: false,
     wallpaper:{
       color:'#EFEAE2',
       hoverColor:'',
