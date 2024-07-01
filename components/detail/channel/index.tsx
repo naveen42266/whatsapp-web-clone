@@ -34,7 +34,7 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
         <div className={`h-screen w-full`} > {/*style={{ backgroundImage: 'url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png)' }}*/}
             <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={() => { handleUserDetails() }}>
                 <div className="flex items-center gap-3">
-                    <Avatar alt="Naveen" src={''} sx={{ width: "42px", height: "42px" }} />
+                    <Avatar alt="Naveen" src={whatsapp?.tabSection?.profile || ''} sx={{ width: "42px", height: "42px" }} />
                     <div>
                         <div>{user}</div>
                         <div className="text-sm text-[#667781]">{whatsapp?.tabSection?.followers} followers</div>

@@ -16,7 +16,8 @@ export const data =
       title:'',
       user:'',
       mobile:'',
-      followers:''
+      followers:'',
+      profile:''
     },
     userProfile: false,
     channelProfile: false,

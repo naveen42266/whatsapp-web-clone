@@ -28,8 +28,8 @@ export default function Home() {
         }
         return <div className="bg-[#EFEAE2] h-full"><DetailComponent /></div>
     }
-// console.log(whatsapp,'whatsapp')
-    function handleSetTabDetails(title: string, user: string, mobile: string) {
+    console.log(whatsapp,'whatsapp')
+    function handleSetTabDetails(title: string, user: string, mobile: string, profile: string) {
         if (title === 'chat') {
             setWhatsapp((prevStatus: { tabSection: any; userProfile: boolean }) => ({
                 ...prevStatus,
@@ -37,7 +37,8 @@ export default function Home() {
                     ...prevStatus.tabSection,
                     title: title,
                     user: user,
-                    mobile: mobile
+                    mobile: mobile,
+                    profile: profile
                 },
                 userProfile: false,
                 channelProfile: false,
@@ -50,7 +51,8 @@ export default function Home() {
                     ...prevStatus.tabSection,
                     title: title,
                     user: user,
-                    followers: mobile
+                    followers: mobile,
+                    profile: profile
                 },
                 channelProfile: false,
                 userProfile: false
@@ -66,13 +68,13 @@ export default function Home() {
                     <div className="h-[100%] w-[12%]">
                         <TabsComponent selectedTab={(tab: string) => { setSelectedTab(tab) }} />
                     </div>
-                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, mobile: string, key: string) => { handleSetTabDetails(key, value, mobile) }} /></div>
+                    <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, mobile: string, profile: string, key: string) => { handleSetTabDetails(key, value, mobile, profile) }} /></div>
                 </div>
                 <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile || whatsapp?.channelProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '}`} style={{ backgroundColor: whatsapp?.wallpaper?.hoverColor ? whatsapp?.wallpaper?.hoverColor : whatsapp?.wallpaper?.color }}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}
                 </div>
                 <div className={`h-[100%] sm:w-[28%] md:w-[30%] ${whatsapp?.userProfile || whatsapp?.channelProfile ? 'block' : "hidden"}`}>
-                   {whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails/> } 
+                    {whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails />}
                 </div>
             </div>
         </div>

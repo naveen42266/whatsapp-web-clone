@@ -33,7 +33,7 @@ import Wallpaper from "./settings/chats/wallpaper";
 import ChannelsList from "./channels/channelsList";
 interface ListComponentProps {
     tab: string;
-    handleDetailContent: (value: string, mobile: string, key: string) => void;
+    handleDetailContent: (value: string, mobile: string, profile: string, key: string) => void;
 }
 
 const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) => {
@@ -44,7 +44,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
     useEffect(() => { setSwitchScreen('') }, [whatsapp?.tab])
     function selectedTab() {
         if (whatsapp?.tab === 'chats') {
-            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string) => { handleDetailContent(user, mobile, 'chat') }} />
+            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string) => { handleDetailContent(user, mobile, '', 'chat') }} />
         }
         else if (whatsapp?.tab === 'communities') {
             return <Communities tab={whatsapp?.tab} />
@@ -53,7 +53,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             return <Status tab={whatsapp?.tab} />
         }
         else if (whatsapp?.tab === 'channels' && switchScreen != 'Find channels') {
-            return <Channels tab={whatsapp?.tab} handleChannelsList={(value: string) => { setSwitchScreen(value); }} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, 'channel') }} />
+            return <Channels tab={whatsapp?.tab} handleChannelsList={(value: string) => { setSwitchScreen(value); }} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, channel?.profile, 'channel') }} />
         }
         else if (whatsapp?.tab === 'settings' && switchScreen == '' && !keyboardShortcutsModal && !logout) {
             return <Settings tab={whatsapp?.tab} handleProfile={(value: string) => { if (value == 'logout') { setLogout(!logout) } else if (value !== 'keyboardShotcuts') { setSwitchScreen(value) } else { setKeyboardShortcutsModal(!keyboardShortcutsModal) } }} />
@@ -201,7 +201,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
             return <Wallpaper tab={"Set chat wallpaper"} handleBack={(value: string) => { setSwitchScreen('chats') }} />
         }
         else if (whatsapp?.tab === 'channels' && switchScreen == 'Find channels') {
-            return <ChannelsList tab={switchScreen} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, 'channel') }} handleBack={(value: string) => { setSwitchScreen('channels') }} />
+            return <ChannelsList tab={switchScreen} handleChannel={(channel: any) => { handleDetailContent(channel?.name, channel?.followers, channel?.profile, 'channel') }} handleBack={(value: string) => { setSwitchScreen('channels') }} />
         }
     }
 
