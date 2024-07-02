@@ -11,6 +11,15 @@ const ChannelDetails = () => {
     function handleUserDetails() {
         setWhatsapp({ ...whatsapp, channelProfile: false, userProfile: false });
     }
+    function handleViewProfile() {
+        setWhatsapp((prevTabSection: { tabSection: any; }) => ({
+            ...prevTabSection,
+            tabSection: {
+                ...prevTabSection.tabSection,
+                isProfile: true
+            }
+        }));
+    }
     return (
         <div className="bg-white h-full">
             <div className="flex items-center gap-5 py-5 px-6 bg-white">
@@ -19,7 +28,7 @@ const ChannelDetails = () => {
             </div>
             <div className="h-[91%] w-full overflow-y-scroll custom-scroll">
                 <div className="py-7 flex flex-col justify-center items-center">
-                    <Avatar className='cursor-pointer' alt="Naveen" src={whatsapp?.tabSection?.profile || ''} sx={{ width: "200px", height: "200px" }} />
+                    <Avatar className='cursor-pointer' alt="Naveen" src={whatsapp?.tabSection?.profile || ''} sx={{ width: "200px", height: "200px" }} onClick={() => { whatsapp?.tabSection?.profile != '' ? handleViewProfile() : '' }} />
                     <div className='text-xl pt-3'>{whatsapp?.tabSection?.user}</div>
                     <div className='text-base text-[#8696a0] flex justify-center items-center'>Channel <div className="w-0.5 h-0.5 mx-1.5 bg-[#8696a0] rounded-full"></div> {whatsapp?.tabSection?.followers} followers</div>
                 </div>

@@ -194,7 +194,7 @@ export const whatsappStatusData = [
 export const channelNames = ["nature","wild life","photography","travel","food"]
 
 export const channels = [
-  { name: 'M S D', followers: '200M', profile: 'https://images.deccanherald.com/deccanherald%2F2023-10%2F25395b5c-6962-49ae-a564-6e099e82823e%2FSnapinsta_app_385693669_283320344577884_4451666051114348932_n_1080.jpg?rect=0%2C0%2C1012%2C1349' },
+  { name: 'MSD', followers: '200M', profile: 'https://images.deccanherald.com/deccanherald%2F2023-10%2F25395b5c-6962-49ae-a564-6e099e82823e%2FSnapinsta_app_385693669_283320344577884_4451666051114348932_n_1080.jpg?rect=0%2C0%2C1012%2C1349' },
   { name: 'Kohli', followers: '180M', profile: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH4d2KHlqekZyAG-nFmwMrbh_HoRECv0ExQ&s' },
   { name: 'Rohit', followers: '180M', profile: 'https://www.koimoi.com/wp-content/new-galleries/2024/04/tracing-the-salary-growth-of-rohit-sharma-in-ipl-001.jpg' },
   { name: 'Gayle', followers: '180M', profile: 'https://d30ny7ijak9wq4.cloudfront.net/s3fs-public/images/story/2023/05/23/chris.jpg' },
@@ -206,7 +206,7 @@ export const channels = [
   { name: 'Steyn', followers: '150M', profile: 'https://assets.telegraphindia.com/telegraph/7sposteyn.jpg' },
   { name: 'Faf', followers: '200M', profile: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvcGyvq5ffH34vEzkM_yG6Qc4g6ORL3AfY5eFlyuyVCd4F1aL1cn3kr6WLetViID1D5No&usqp=CAU' },
   { name: 'Abd', followers: '180M', profile: 'https://pbs.twimg.com/profile_images/938297395670081537/okFUL8VX_400x400.jpg' },
-  { name: 'Liam', followers: '180M', profile: 'https://i2.wp.com/crictoday.com/wp-content/uploads/2023/01/Liam-Livingstone-as-seen-in-an-Instagram-Post-in-June-2021.jpg?ssl=1' },
+  { name: 'Livingstone', followers: '180M', profile: 'https://i2.wp.com/crictoday.com/wp-content/uploads/2023/01/Liam-Livingstone-as-seen-in-an-Instagram-Post-in-June-2021.jpg?ssl=1' },
   { name: 'Moeen', followers: '180M', profile: 'https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/355300/355321.6.jpg' },
   { name: 'Kane', followers: '150M', profile: 'https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_480,q_50/lsci/db/PICTURES/CMS/383100/383103.10.jpg' }
 ]

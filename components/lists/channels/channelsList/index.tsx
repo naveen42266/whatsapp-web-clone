@@ -72,7 +72,7 @@ const ChannelsList: React.FC<ChannelsListProps> = ({ tab, handleBack, handleChan
                     return (
                         <div key={index} className={`flex items-center cursor-pointer pl-4 ${whatsapp?.tabSection?.user == each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => { }} onMouseLeave={() => { }} onClick={() => { handleChannel(each) }}>
                             <div className="">
-                                <Avatar src={each?.profile} alt="Naveen" sx={{ width: 50, height: 50 }} />
+                                <Avatar src={each?.profile || ''} alt="Naveen" sx={{ width: 50, height: 50 }} />
                             </div>
                             <div className="flex justify-between items-center pl-2 pr-4 w-full border-b border-[#e9edef]">
                                 <div className="flex flex-col justify-between">

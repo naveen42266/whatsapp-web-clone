@@ -7,6 +7,8 @@ import { WhatsappContext } from "../../useContext";
 import UserDetails from "../userDetails";
 import Channel from "../detail/channel";
 import ChannelDetails from "../channelDetails";
+import { Drawer } from "@mui/material";
+import ViewProfile from "../viewProfile";
 
 export default function Home() {
     const [selectedTab, setSelectedTab] = useState<string>('chats');
@@ -59,6 +61,15 @@ export default function Home() {
             }));
         }
     }
+    function handleViewProfile() {
+        setWhatsapp((prevWhatsapp: { tabSection: any; }) => ({
+          ...prevWhatsapp,
+          tabSection: {
+            ...prevWhatsapp.tabSection,
+            isProfile: false,
+          },
+        }));
+    }
     return (
         <div className="h-screen w-full relative overflow-y-hidden">
             <div className="bg-[#00a884] h-[17.5%] w-full"></div>
@@ -77,6 +88,7 @@ export default function Home() {
                     {whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails />}
                 </div>
             </div>
+            <Drawer open={whatsapp?.tabSection?.isProfile} onClose={()=>{handleViewProfile()}}  sx={{ '& .MuiDrawer-paper': { width: '100%' , opacity: 0.9} }}><ViewProfile name={whatsapp?.tabSection?.user} profile={whatsapp?.tabSection?.profile} handleClose={(value: boolean)=> {handleViewProfile()} }/></Drawer>
         </div>
     );
 }
