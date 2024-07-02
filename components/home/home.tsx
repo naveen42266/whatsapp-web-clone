@@ -30,7 +30,6 @@ export default function Home() {
         }
         return <div className="bg-[#EFEAE2] h-full"><DetailComponent /></div>
     }
-    console.log(whatsapp,'whatsapp')
     function handleSetTabDetails(title: string, user: string, mobile: string, profile: string) {
         if (title === 'chat') {
             setWhatsapp((prevStatus: { tabSection: any; userProfile: boolean }) => ({
@@ -88,7 +87,7 @@ export default function Home() {
                     {whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails />}
                 </div>
             </div>
-            <Drawer open={whatsapp?.tabSection?.isProfile} onClose={()=>{handleViewProfile()}}  sx={{ '& .MuiDrawer-paper': { width: '100%' , opacity: 0.9} }}><ViewProfile name={whatsapp?.tabSection?.user} profile={whatsapp?.tabSection?.profile} handleClose={(value: boolean)=> {handleViewProfile()} }/></Drawer>
+            <Drawer anchor="right" open={whatsapp?.tabSection?.isProfile} onClose={()=>{handleViewProfile()}}  sx={{ '& .MuiDrawer-paper': { width: '100%' , opacity: 0.9} }}><ViewProfile name={whatsapp?.tabSection?.user} profile={whatsapp?.tabSection?.profile} handleClose={(value: boolean)=> {handleViewProfile()} }/></Drawer>
         </div>
     );
 }
