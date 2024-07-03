@@ -38,6 +38,33 @@ const messages = [
     { sender: 'user', text: 'Just a minor suggestion, will message you separately', time: '2:25 PM' },
     { sender: 'other', text: 'Sure thing! 👍', time: '2:30 PM' },
 ];
+const metaAi = [
+    { sender: 'user', text: "1. What is the difference between null and undefined in JavaScript?", time: '12:30 PM', edited: false },
+    { sender: 'other', text: ``, time: '12:35 PM' },
+    { sender: 'user', text: 'Pasta and salad 🥗', time: '12:40 PM', edited: true },
+    { sender: 'other', text: 'Sounds delicious! 😋', time: '12:45 PM' },
+    { sender: 'user', text: 'It was! How about you?', time: '12:50 PM' },
+    { sender: 'other', text: 'Had a sandwich 🥪', time: '12:55 PM' },
+    { sender: 'user', text: 'Nice! Working on the project now?', time: '1:00 PM' },
+    { sender: 'other', text: 'Yeah, fixing some bugs 🐛', time: '1:05 PM' },
+    { sender: 'user', text: 'Cool, need any help? 🤓', time: '1:10 PM', edited: true },
+    { sender: 'other', text: 'Maybe later, thanks! 🙏', time: '1:15 PM' },
+    { sender: 'user', text: 'Okay, let me know! 😊', time: '1:20 PM' },
+    { sender: 'user', text: 'I will be here till 3 PM 🕒', time: '1:25 PM' },
+    { sender: 'other', text: 'Got it! Working on the new feature now 🔧', time: '1:30 PM' },
+    { sender: 'user', text: 'Which feature? 🚀', time: '1:35 PM' },
+    { sender: 'other', text: 'The real-time chat integration', time: '1:40 PM' },
+    { sender: 'user', text: 'Exciting! Can’t wait to see it in action 👀', time: '1:45 PM' },
+    { sender: 'other', text: 'Almost done, just a few more tweaks 🔄', time: '1:50 PM' },
+    { sender: 'user', text: 'You’re the best! 🙌', time: '1:55 PM' },
+    { sender: 'other', text: 'Teamwork makes the dream work 💪', time: '2:00 PM' },
+    { sender: 'user', text: 'Absolutely! 💯', time: '2:05 PM' },
+    { sender: 'other', text: 'Just pushed the changes, check it out! 🚢', time: '2:10 PM' },
+    { sender: 'user', text: 'Looking great! 🥳', time: '2:15 PM' },
+    { sender: 'other', text: 'Thanks! Any feedback? 📝', time: '2:20 PM' },
+    { sender: 'user', text: 'Just a minor suggestion, will message you separately', time: '2:25 PM' },
+    { sender: 'other', text: 'Sure thing! 👍', time: '2:30 PM' },
+];
 const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext)
 
@@ -45,13 +72,13 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
         if (index === 0) return true;
         return messages[index].sender !== messages[index - 1].sender;
     };
-    function handleUserDetails(){
+    function handleUserDetails() {
         setWhatsapp({ ...whatsapp, userProfile: true });
     }
 
     return (
         <div className={`h-screen w-full`} > {/*style={{ backgroundImage: 'url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png)' }}*/}
-            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={()=>{handleUserDetails()}}>
+            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={() => { handleUserDetails() }}>
                 <div className="flex items-center gap-3">
                     <Avatar alt="Naveen" src={''} sx={{ width: "42px", height: "42px" }} />
                     <div>
