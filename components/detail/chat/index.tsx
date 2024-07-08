@@ -16,31 +16,31 @@ interface ChatDetailsProps {
     user: string;
 }
 const messages = [
-    { sender: 'user', text: "Just finished lunch 🍝", time: '12:30 PM', edited: false },
-    { sender: 'other', text: 'What did you have? 🤔', time: '12:35 PM' },
-    { sender: 'user', text: 'Pasta and salad 🥗', time: '12:40 PM', edited: true },
-    { sender: 'other', text: 'Sounds delicious! 😋', time: '12:45 PM' },
-    { sender: 'user', text: 'It was! How about you?', time: '12:50 PM' },
-    { sender: 'other', text: 'Had a sandwich 🥪', time: '12:55 PM' },
-    { sender: 'user', text: 'Nice! Working on the project now?', time: '1:00 PM' },
-    { sender: 'other', text: 'Yeah, fixing some bugs 🐛', time: '1:05 PM' },
-    { sender: 'user', text: 'Cool, need any help? 🤓', time: '1:10 PM', edited: true },
-    { sender: 'other', text: 'Maybe later, thanks! 🙏', time: '1:15 PM' },
-    { sender: 'user', text: 'Okay, let me know! 😊', time: '1:20 PM' },
-    { sender: 'user', text: 'I will be here till 3 PM 🕒', time: '1:25 PM' },
-    { sender: 'other', text: 'Got it! Working on the new feature now 🔧', time: '1:30 PM' },
-    { sender: 'user', text: 'Which feature? 🚀', time: '1:35 PM' },
-    { sender: 'other', text: 'The real-time chat integration', time: '1:40 PM' },
-    { sender: 'user', text: 'Exciting! Can’t wait to see it in action 👀', time: '1:45 PM' },
-    { sender: 'other', text: 'Almost done, just a few more tweaks 🔄', time: '1:50 PM' },
-    { sender: 'user', text: 'You’re the best! 🙌', time: '1:55 PM' },
-    { sender: 'other', text: 'Teamwork makes the dream work 💪', time: '2:00 PM' },
-    { sender: 'user', text: 'Absolutely! 💯', time: '2:05 PM' },
-    { sender: 'other', text: 'Just pushed the changes, check it out! 🚢', time: '2:10 PM' },
-    { sender: 'user', text: 'Looking great! 🥳', time: '2:15 PM' },
-    { sender: 'other', text: 'Thanks! Any feedback? 📝', time: '2:20 PM' },
-    { sender: 'user', text: 'Just a minor suggestion, will message you separately', time: '2:25 PM' },
-    { sender: 'other', text: 'Sure thing! 👍', time: '2:30 PM' },
+    { sender: 'user', text: "Just finished lunch 🍝", react: null, time: '12:30 PM', edited: false },
+    { sender: 'other', text: 'What did you have? 🤔', react: null, time: '12:35 PM' },
+    { sender: 'user', text: 'Pasta and salad 🥗', react: null, time: '12:40 PM', edited: true },
+    { sender: 'other', text: 'Sounds delicious! 😋', react: null, time: '12:45 PM' },
+    { sender: 'user', text: 'It was! How about you?', react: null, time: '12:50 PM' },
+    { sender: 'other', text: 'Had a sandwich 🥪', react: null, time: '12:55 PM' },
+    { sender: 'user', text: 'Nice! Working on the project now?', react: null, time: '1:00 PM' },
+    { sender: 'other', text: 'Yeah, fixing some bugs 🐛', react: null, time: '1:05 PM' },
+    { sender: 'user', text: 'Cool, need any help? 🤓', react: null, time: '1:10 PM', edited: true },
+    { sender: 'other', text: 'Maybe later, thanks! 🙏', react: null, time: '1:15 PM' },
+    { sender: 'user', text: 'Okay, let me know! 😊', react: null, time: '1:20 PM' },
+    { sender: 'user', text: 'I will be here till 3 PM 🕒', react: null, time: '1:25 PM' },
+    { sender: 'other', text: 'Got it! Working on the new feature now 🔧', react: null, time: '1:30 PM' },
+    { sender: 'user', text: 'Which feature? 🚀', react: null, time: '1:35 PM' },
+    { sender: 'other', text: 'The real-time chat integration', react: null, time: '1:40 PM' },
+    { sender: 'user', text: 'Exciting! Can’t wait to see it in action 👀', react: null, time: '1:45 PM' },
+    { sender: 'other', text: 'Almost done, just a few more tweaks 🔄', react: null, time: '1:50 PM' },
+    { sender: 'user', text: 'You’re the best! 🙌', react: null, time: '1:55 PM' },
+    { sender: 'other', text: 'Teamwork makes the dream work 💪', react: null, time: '2:00 PM' },
+    { sender: 'user', text: 'Absolutely! 💯', react: null, time: '2:05 PM' },
+    { sender: 'other', text: 'Just pushed the changes, check it out! 🚢', react: null, time: '2:10 PM' },
+    { sender: 'user', text: 'Looking great! 🥳', react: null, time: '2:15 PM' },
+    { sender: 'other', text: 'Thanks! Any feedback? 📝', react: null, time: '2:20 PM' },
+    { sender: 'user', text: 'Just a minor suggestion, will message you separately', react: null, time: '2:25 PM' },
+    { sender: 'other', text: 'Sure thing! 👍', react: null, time: '2:30 PM' },
 ];
 const metaAi = [
     { sender: 'user', text: "1. What is the difference between null and undefined in JavaScript?", time: '12:30 PM', edited: false },
@@ -74,45 +74,54 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const [list, setList] = useState(messages);
     const [message, setMessage] = useState('');
     const [emojiPickerVisible, setEmojiPickerVisible] = useState({ type: "", id: "", isEmoji: false });
-    const [isHovered, setIsHovered] = useState({ type: "", id: "" })
+    const [reacted, setReacted] = useState({ type: "", id: "", emoji: null });
+    const [isHovered, setIsHovered] = useState({ type: "", id: "" });
 
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
-        if (index === 0) return true;
-        return messages[index].sender !== messages[index - 1].sender;
+        return index === 0 || messages[index].sender !== messages[index - 1].sender;
     };
-    function handleUserDetails() {
+
+    const handleUserDetails = () => {
         setWhatsapp({ ...whatsapp, userProfile: true });
-    }
-
-    function handleChat(chat: string) {
-        let newChat = { sender: '', text: '', time: '', edited: false };
-        newChat.sender = 'user';
-        newChat.text = chat;
-        newChat.time = moment(new Date()).format('LT');
-        list?.push(newChat);
-        setList(list);
-        setMessage('')
-    }
-
-    const onEmojiClick = (event: any, emojiObject: any) => {
-        // setMessage(message + emojiObject.emoji as string);
-        setEmojiPickerVisible({ ...emojiPickerVisible, type: '', id: '', isEmoji: false });
     };
-    console.log(isHovered, 'emojiPickerVisible' , emojiPickerVisible)
+
+    const handleChat = (chat: string) => {
+        const newChat = {
+            sender: 'user',
+            text: chat,
+            react: null,
+            time: moment().format('LT'),
+            edited: false
+        };
+        setList([...list, newChat]);
+        setMessage('');
+    };
+
+    const onEmojiClick = (emoji: any) => {
+        setReacted({ ...reacted, type: emojiPickerVisible.type, id: emojiPickerVisible.id, emoji });
+        const updatedList = list.map((ele, index) => {
+            if (`${index}` === emojiPickerVisible.id && ele.sender === emojiPickerVisible.type) {
+                return { ...ele, react: emoji };
+            }
+            return ele;
+        });
+        setList(updatedList);
+        setEmojiPickerVisible({ type: '', id: '', isEmoji: false });
+    };
     return (
-        <div className={`h-screen w-full`} onClick={() => { emojiPickerVisible?.isEmoji && setEmojiPickerVisible({ ...emojiPickerVisible, type: '', id: '', isEmoji: false }); }} > {/*style={{ backgroundImage: 'url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png)' }}*/}
-            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={() => { handleUserDetails() }}>
+        <div className="h-screen w-full" onClick={() => emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false })}>
+            <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={handleUserDetails}>
                 <div className="flex items-center gap-3">
-                    <Avatar alt="Naveen" src={''} sx={{ width: "42px", height: "42px" }} />
+                    <Avatar alt={user} src={''} sx={{ width: 42, height: 42 }} />
                     <div>
                         <div>{user}</div>
                         <div className="text-sm text-[#667781]">Last seen</div>
                     </div>
                 </div>
                 <div className="relative flex items-center gap-6 mr-1 text-[#54656f]">
-                    <div className="cursor-pointer"><VideocamIcon /></div>
-                    <div className="cursor-pointer"><SearchIcon /></div>
-                    <div className="cursor-pointer"><MoreVertIcon /></div>
+                    <VideocamIcon className="cursor-pointer" />
+                    <SearchIcon className="cursor-pointer" />
+                    <MoreVertIcon className="cursor-pointer" />
                 </div>
             </div>
             <div className="p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative">
@@ -121,20 +130,21 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                 </div>
                 <div className="p-6">
                     {list.map((message, index) => (
-                        <div key={index} className={`flex cursor-pointer  ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-[3px]`} onMouseEnter={() => { setIsHovered({ ...isHovered, type: message?.sender, id: `${index}` }) }} onMouseLeave={() => { setIsHovered({ ...isHovered, type: "", id: "" }) }}>
-                            {message.sender !== 'user' && isFirstMessageOfSender(messages, index) ? (<div className={`w-0 h-0 rotate-180 border-t-[15px] border-t-transparent border-l-[15px] border-l-white`}></div>) : <div className="p-2"></div>}
-                            {message.sender === 'user' && isHovered?.type === 'user' && isHovered?.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 mr-2 rounded-full" onClick={() => { setEmojiPickerVisible({ ...emojiPickerVisible, type: message?.sender, id: `${index}`, isEmoji: !emojiPickerVisible?.isEmoji }); }} />}
-                            <div className={`rounded-lg px-3 py-1 shadow-md max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
+                        <div key={index} className={`flex cursor-pointer ${message.sender === 'user' ? 'justify-end' : 'justify-start'} ${message.react ? 'mb-[26px]' : 'mb-[3px]'}`} onMouseEnter={() => setIsHovered({ type: message.sender, id: `${index}` })} onMouseLeave={() => setIsHovered({ type: "", id: "" })}>
+                            {message.sender !== 'user' && isFirstMessageOfSender(list, index) && <div className="z-10 w-0 h-0 rotate-180 border-t-[15px] border-t-transparent border-l-[15px] border-l-white" />}
+                            {message.sender === 'user' && isHovered.type === 'user' && isHovered.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 mr-2 rounded-full" onClick={() => setEmojiPickerVisible({ type: message.sender, id: `${index}`, isEmoji: !emojiPickerVisible.isEmoji })} />}
+                            <div className={`relative shadow-md rounded-lg px-3 py-1 max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
                                 <p className="text-sm pr-16">{message.text}</p>
-                                <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited ? '(Edited)' : ''}</p>
-                                {/* {emojiPickerVisible?.id === `${index}` && emojiPickerVisible?.type === message?.sender && emojiPickerVisible?.isEmoji && (
-                                    <div className="fixed top-20 left-0 right-0 z-20">
-                                        <EmojiPicker onEmojiClick={onEmojiClick} />
+                                <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited && '(Edited)'}</p>
+                                {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`}>{message.react}</div>}
+                                {emojiPickerVisible.id === `${index}` && emojiPickerVisible.type === message.sender && emojiPickerVisible.isEmoji && (
+                                    <div className={`absolute top-20 left-0 ${message.sender === 'user' ? '-right-40' : 'right-0'} z-20`}>
+                                        <EmojiPicker onEmojiClick={(evt) => onEmojiClick(evt.emoji)} />
                                     </div>
-                                )} */}
+                                )}
                             </div>
-                            {message.sender !== 'user' && isHovered?.type !== 'user' && isHovered?.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 ml-2 rounded-full" onClick={() => { setEmojiPickerVisible({ ...emojiPickerVisible, type: message?.sender, id: `${index}`, isEmoji: !emojiPickerVisible?.isEmoji }); }} />}
-                            {message.sender === 'user' && isFirstMessageOfSender(messages, index) ? (<div className={`w-0 h-0 rotate-90 border-t-[15px] border-t-transparent border-l-[15px] border-l-[#d9fdd3]`}></div>) : <div className="p-2"></div>}
+                            {message.sender !== 'user' && isHovered.type !== 'user' && isHovered.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 ml-2 rounded-full" onClick={() => setEmojiPickerVisible({ type: message.sender, id: `${index}`, isEmoji: !emojiPickerVisible.isEmoji })} />}
+                            {message.sender === 'user' && isFirstMessageOfSender(list, index) && <div className="z-10 w-0 h-0 rotate-90 border-t-[15px] border-t-transparent border-l-[15px] border-l-[#d9fdd3]" />}
                         </div>
                     ))}
                 </div>

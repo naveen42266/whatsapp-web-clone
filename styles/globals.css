@@ -3,90 +3,93 @@
 @tailwind utilities;
 
 .searchField {
-    .MuiInputBase-root.MuiInput-root::before {
-        border-bottom: none !important;
-    }
+  .MuiInputBase-root.MuiInput-root::before {
+    border-bottom: none !important;
+  }
 
-    .MuiInputBase-root.MuiInput-root::after {
-        border-bottom: none !important;
-    }
+  .MuiInputBase-root.MuiInput-root::after {
+    border-bottom: none !important;
+  }
 
-    .MuiInputBase-root.MuiInput-root {
-        font-size: 14px;
-        color: black;
-    }
+  .MuiInputBase-root.MuiInput-root {
+    font-size: 14px;
+    color: black;
+  }
 }
 
 .animation {
-    animation-play-state: running;
-    overflow-x: hidden;
-    width: 258px;
-    height: 258px;
-    overflow-y: hidden;
-    animation-timing-function: steps(15);
-    background-size: 1600% auto;
-    animation-name: x12df34r-B;
-    background-repeat: no-repeat;
-    flex-basis: auto;
-    align-self: center;
-    animation-iteration-count: infinite;
-    flex-shrink: 0;
-    animation-duration: 1s;
-    flex-grow: 0;
+  animation-play-state: running;
+  overflow-x: hidden;
+  width: 258px;
+  height: 258px;
+  overflow-y: hidden;
+  animation-timing-function: steps(15);
+  background-size: 1600% auto;
+  animation-name: x12df34r-B;
+  background-repeat: no-repeat;
+  flex-basis: auto;
+  align-self: center;
+  animation-iteration-count: infinite;
+  flex-shrink: 0;
+  animation-duration: 1s;
+  flex-grow: 0;
 }
 
 @keyframes x12df34r-B {
-    from {
-        background-position-x: 0%;
-    }
+  from {
+    background-position-x: 0%;
+  }
 
-    to {
-        background-position-x: 100%;
-    }
+  to {
+    background-position-x: 100%;
+  }
 }
 
 [data-animation] {
-    background-image: url(https://static.whatsapp.net/rsrc.php/v3/yf/r/4l5Jzvrg84p.png);
+  background-image: url(https://static.whatsapp.net/rsrc.php/v3/yf/r/4l5Jzvrg84p.png);
 }
 
-.bgImg{
-    background-image: url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png);
+.bgImg {
+  background-image: url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png);
 }
 
 .custom-scroll {
-    overflow-y: scroll;
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #888 #f1f1f1; /* Firefox */
-  }
-  
-  .custom-scroll::-webkit-scrollbar {
-    width: 8px; /* width of the scrollbar */
-    height: 8px; /* height of the scrollbar (for horizontal scrollbar) */
-  }
-  
-  .custom-scroll::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 10px;
-  }
-  
-  .custom-scroll::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
-  
-  .custom-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  /* Firefox */
+  scrollbar-color: #888 #f1f1f1;
+  /* Firefox */
+}
 
-  .statusTextField{
-    .MuiInputBase-input.MuiInput-input{
-        color: white;
-      }
-  }
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+  /* width of the scrollbar */
+  height: 8px;
+  /* height of the scrollbar (for horizontal scrollbar) */
+}
 
-  .radioButton{
-      .MuiButtonBase-root.MuiRadio-root.Mui-checked {
-        color: #008069;
-      }
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.statusTextField {
+  .MuiInputBase-input.MuiInput-input {
+    color: white;
   }
-  
+}
+
+.radioButton {
+  .MuiButtonBase-root.MuiRadio-root.Mui-checked {
+    color: #008069;
+  }
+}
