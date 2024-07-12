@@ -11,6 +11,7 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import moment from "moment";
 import EmojiPicker from "emoji-picker-react";
 import { WhatsappContext } from "../../../useContext";
+import { Tab, Tabs } from "@mui/material";
 
 interface ChatDetailsProps {
     user: string;
@@ -74,9 +75,9 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const [list, setList] = useState(messages);
     const [message, setMessage] = useState('');
     const [emojiPickerVisible, setEmojiPickerVisible] = useState({ type: "", id: "", isEmoji: false });
-    const [reacted, setReacted] = useState({ type: "", id: "", emoji: null });
+    const [reacted, setReacted] = useState({ type: "", id: "", emoji: null, view: false });
     const [isHovered, setIsHovered] = useState({ type: "", id: "" });
-
+    const [tab, setTab] = useState<any>('All')
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         return index === 0 || messages[index].sender !== messages[index - 1].sender;
     };
@@ -108,8 +109,20 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
         setList(updatedList);
         setEmojiPickerVisible({ type: '', id: '', isEmoji: false });
     };
+
+    const handleRemoveEmoji = (id: number, type: string) => {
+        const updatedList = list?.map((item, index) => {
+            if (index === id && item?.sender === type) {
+                return { ...item, react: null };
+            }
+            return item;
+        });
+        setList(updatedList);
+    }
+
     return (
-        <div className="h-screen w-full" onClick={() => emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false })}>
+        // reacted.view && setReacted({ ...reacted, view: false })
+        <div className="h-screen w-full" onClick={() => { emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), reacted.view && setReacted({ ...reacted, view: false }) }}>
             <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={handleUserDetails}>
                 <div className="flex items-center gap-3">
                     <Avatar alt={user} src={''} sx={{ width: 42, height: 42 }} />
@@ -124,7 +137,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                     <MoreVertIcon className="cursor-pointer" />
                 </div>
             </div>
-            <div className="p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative">
+            <div className={`p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative`}>
                 <div className="flex justify-center top-0 left-0 bottom-0 right-0 sticky">
                     <span className="text-[#54656f] text-sm px-2 py-1 rounded-md shadow-md" style={{ backgroundColor: "rgba(255, 255, 255)" }}>TUESDAY</span>
                 </div>
@@ -136,10 +149,29 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                             <div className={`relative shadow-md rounded-lg px-3 py-1 max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
                                 <p className="text-sm pr-16">{message.text}</p>
                                 <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited && '(Edited)'}</p>
-                                {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`}>{message.react}</div>}
+                                {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`} onClick={() => { setReacted({ ...reacted, id: `${index}`, type: message?.sender, view: true }) }}>{message.react}</div>}
                                 {emojiPickerVisible.id === `${index}` && emojiPickerVisible.type === message.sender && emojiPickerVisible.isEmoji && (
-                                    <div className={`absolute top-20 left-0 ${message.sender === 'user' ? '-right-40' : 'right-0'} z-20`}>
-                                        <EmojiPicker onEmojiClick={(evt) => onEmojiClick(evt.emoji)} />
+                                    <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`}>
+                                        <EmojiPicker height={'350px'} width={'350px'} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} />
+                                    </div>
+                                )}
+                                {reacted.id === `${index}` && reacted.type === message.sender && reacted.view && (
+                                    <div className={`absolute top-20 bg-white rounded-xl ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] shadow-xl z-20`}>
+                                        <Tabs className="border-b border-slate-300" value={tab} onChange={(event: React.SyntheticEvent, newValue: any) => setTab(newValue)} aria-label="basic tabs example" sx={{ minWidth: '50px' }}>
+                                            <Tab label='All' value='All' sx={{ minWidth: '45px' }} />
+                                            <Tab label={message.react} value={message?.react} sx={{ minWidth: '45px' }} />
+                                        </Tabs>
+                                        <div className="flex justify-between items-center mt-2 px-3 py-2 hover:bg-[#f5f6f6]" onClick={() => handleRemoveEmoji(index, message?.sender)}>
+                                            <div className="flex items-center gap-2">
+                                                <Avatar alt={user} src={''} sx={{ width: 40, height: 40 }} />
+                                                <div className="flex flex-col justify-between">
+                                                    <div className="text-sm">{user}</div>
+                                                    <div className="text-xs text-[#667781]">Click to remove</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-lg">{message?.react}</div>
+                                        </div>
+                                        <div className="h-16"></div>
                                     </div>
                                 )}
                             </div>
