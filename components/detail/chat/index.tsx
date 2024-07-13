@@ -13,8 +13,7 @@ import EmojiPicker from "emoji-picker-react";
 import Picker from "emoji-picker-react";
 import { WhatsappContext } from "../../../useContext";
 import { Tab, Tabs } from "@mui/material";
-import dynamic from 'next/dynamic';
-// const Picker = dynamic(() => { return import('emoji-picker-react'); }, { ssr: false });
+
 interface ChatDetailsProps {
     user: string;
 }
@@ -80,7 +79,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const [reacted, setReacted] = useState({ type: "", id: "", emoji: null, view: false });
     const [isHovered, setIsHovered] = useState({ type: "", id: "" });
     const [tab, setTab] = useState<any>('All');
-    const [emojiHover, setEmojiHover] = useState({ type: '', boolean: true });
+    const [emojiHover, setEmojiHover] = useState({ type: '', boolean: false });
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         return index === 0 || messages[index].sender !== messages[index - 1].sender;
     };
@@ -155,7 +154,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                                 <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited && '(Edited)'}</p>
                                 {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`} onClick={() => { setReacted({ ...reacted, id: `${index}`, type: message?.sender, view: true }), setTab('All') }}>{message.react}</div>}
                                 {emojiPickerVisible.id === `${index}` && emojiPickerVisible.type === message.sender && emojiPickerVisible.isEmoji && (
-                                    <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`} onMouseEnter={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: !emojiHover?.boolean })} onMouseLeave={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: !emojiHover?.boolean })}>
+                                    <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`} onMouseEnter={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: true })} onMouseLeave={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: false })}>
                                         {/* <EmojiPicker height={'350px'} width={'350px'} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} /> */}
                                         <Picker reactionsDefaultOpen={true} onReactionClick={(evt) => { onEmojiClick(evt.emoji) }} />
                                     </div>
