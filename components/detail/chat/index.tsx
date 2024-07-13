@@ -10,9 +10,11 @@ import SendIcon from '@mui/icons-material/Send';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import moment from "moment";
 import EmojiPicker from "emoji-picker-react";
+import Picker from "emoji-picker-react";
 import { WhatsappContext } from "../../../useContext";
 import { Tab, Tabs } from "@mui/material";
-
+import dynamic from 'next/dynamic';
+// const Picker = dynamic(() => { return import('emoji-picker-react'); }, { ssr: false });
 interface ChatDetailsProps {
     user: string;
 }
@@ -77,7 +79,8 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const [emojiPickerVisible, setEmojiPickerVisible] = useState({ type: "", id: "", isEmoji: false });
     const [reacted, setReacted] = useState({ type: "", id: "", emoji: null, view: false });
     const [isHovered, setIsHovered] = useState({ type: "", id: "" });
-    const [tab, setTab] = useState<any>('All')
+    const [tab, setTab] = useState<any>('All');
+    const [emojiHover, setEmojiHover] = useState({ type: '', boolean: true });
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         return index === 0 || messages[index].sender !== messages[index - 1].sender;
     };
@@ -118,11 +121,12 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
             return item;
         });
         setList(updatedList);
+        setReacted({ ...reacted, view: false })
     }
-
+    console.log(emojiHover)
     return (
         // reacted.view && setReacted({ ...reacted, view: false })
-        <div className="h-screen w-full" onClick={() => { emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), reacted.view && setReacted({ ...reacted, view: false }) }}>
+        <div className="h-screen w-full" onClick={() => { emojiHover?.type === 'open' && !emojiHover?.boolean && emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), emojiHover?.type === 'count' && !emojiHover?.boolean && reacted.view && setReacted({ ...reacted, view: false }) }}>
             <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={handleUserDetails}>
                 <div className="flex items-center gap-3">
                     <Avatar alt={user} src={''} sx={{ width: 42, height: 42 }} />
@@ -149,14 +153,15 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                             <div className={`relative shadow-md rounded-lg px-3 py-1 max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
                                 <p className="text-sm pr-16">{message.text}</p>
                                 <p className="text-xs text-gray-500 mt-1 text-right">{message.time} {message.edited && '(Edited)'}</p>
-                                {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`} onClick={() => { setReacted({ ...reacted, id: `${index}`, type: message?.sender, view: true }) }}>{message.react}</div>}
+                                {message.react && <div className={`bg-white absolute -bottom-5 ${message.sender === 'user' ? 'right-0' : 'left-0'} rounded-full w-[28px] flex justify-center shadow-md`} onClick={() => { setReacted({ ...reacted, id: `${index}`, type: message?.sender, view: true }), setTab('All') }}>{message.react}</div>}
                                 {emojiPickerVisible.id === `${index}` && emojiPickerVisible.type === message.sender && emojiPickerVisible.isEmoji && (
-                                    <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`}>
-                                        <EmojiPicker height={'350px'} width={'350px'} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} />
+                                    <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`} onMouseEnter={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: !emojiHover?.boolean })} onMouseLeave={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: !emojiHover?.boolean })}>
+                                        {/* <EmojiPicker height={'350px'} width={'350px'} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} /> */}
+                                        <Picker reactionsDefaultOpen={true} onReactionClick={(evt) => { onEmojiClick(evt.emoji) }} />
                                     </div>
                                 )}
                                 {reacted.id === `${index}` && reacted.type === message.sender && reacted.view && (
-                                    <div className={`absolute top-20 bg-white rounded-xl ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] shadow-xl z-20`}>
+                                    <div className={`absolute top-20 bg-white rounded-xl ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] shadow-xl z-20`} onMouseEnter={() => setEmojiHover({ ...emojiHover, type: 'count', boolean: true })} onMouseLeave={() => setEmojiHover({ ...emojiHover, type: 'count', boolean: false })}>
                                         <Tabs className="border-b border-slate-300" value={tab} onChange={(event: React.SyntheticEvent, newValue: any) => setTab(newValue)} aria-label="basic tabs example" sx={{ minWidth: '50px' }}>
                                             <Tab label='All' value='All' sx={{ minWidth: '45px' }} />
                                             <Tab label={message.react} value={message?.react} sx={{ minWidth: '45px' }} />
@@ -171,7 +176,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                                             </div>
                                             <div className="text-lg">{message?.react}</div>
                                         </div>
-                                        <div className="h-16"></div>
+                                        <div className="h-20"></div>
                                     </div>
                                 )}
                             </div>
