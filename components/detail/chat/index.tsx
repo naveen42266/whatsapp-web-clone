@@ -122,7 +122,6 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
         setList(updatedList);
         setReacted({ ...reacted, view: false })
     }
-    console.log(emojiHover)
     return (
         // reacted.view && setReacted({ ...reacted, view: false })
         <div className="h-screen w-full" onClick={() => { emojiHover?.type === 'open' && !emojiHover?.boolean && emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), emojiHover?.type === 'count' && !emojiHover?.boolean && reacted.view && setReacted({ ...reacted, view: false }) }}>
@@ -130,8 +129,8 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                 <div className="flex items-center gap-3">
                     <Avatar alt={user} src={''} sx={{ width: 42, height: 42 }} />
                     <div>
-                        <div>{user}</div>
-                        <div className="text-sm text-[#667781]">Last seen</div>
+                        <div className="text-base">{user}</div>
+                        <div className="text-[13px] text-[#667781]">Last seen today at {messages?.[messages?.length - 1]?.time}</div>
                     </div>
                 </div>
                 <div className="relative flex items-center gap-6 mr-1 text-[#54656f]">
