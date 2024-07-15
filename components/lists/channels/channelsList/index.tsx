@@ -56,7 +56,7 @@ const ChannelsList: React.FC<ChannelsListProps> = ({ tab, handleBack, handleChan
                 </div>
                 <div className="bg-[#f0f2f5] rounded-md mx-3 mt-2 flex items-center py-1">
                     {isFocused ? <ArrowBackOutlinedIcon fontSize="small" className="mx-3 text-[#00a884]" onClick={() => { setIsFocused(!isFocused) }} /> : <SearchOutlinedIcon fontSize="small" className="mx-3 text-[#54656f]" onClick={() => { setIsFocused(!isFocused), handleDivClick() }} />}
-                    <TextField id="standard-basic" className="searchField ml-5" placeholder={'Select'} variant="standard" fullWidth value={searchTerm} onChange={(evt) => { setSearchTerm(evt.target.value) }} onFocus={handleFocus} onBlur={handleBlur} inputRef={inputRef} />
+                    <TextField id="standard-basic" autoComplete="off" className="searchField ml-5" placeholder={'Select'} variant="standard" fullWidth value={searchTerm} onChange={(evt) => { setSearchTerm(evt.target.value) }} onFocus={handleFocus} onBlur={handleBlur} inputRef={inputRef} />
                     {searchTerm ? <CloseIcon fontSize="small" className="mx-3 text-[#54656f]" onClick={() => setSearchTerm('')} /> : ''}
                 </div>
                 <div className="flex items-center gap-1.5 my-2 mx-4">
@@ -78,7 +78,7 @@ const ChannelsList: React.FC<ChannelsListProps> = ({ tab, handleBack, handleChan
                                 <div className="flex flex-col justify-between">
                                     <div className="flex">
                                         <div className="text-[#111b21] text-[17px]">{each?.name}</div>
-                                        <svg className="mt-1 mx-1" height="18" width="18" version="1.1" x="0px" y="0px" enable-background="new 0 0 18 18"><title>psa-verified</title><polygon id="Star-2" fill="#00DA60" points="9,16 7.1,16.9 5.8,15.2 3.7,15.1 3.4,13 1.5,12 2.2,9.9 1.1,8.2 2.6,6.7 2.4,4.6 4.5,4 5.3,2 7.4,2.4 9,1.1 10.7,2.4 12.7,2 13.6,4 15.6,4.6 15.5,6.7 17,8.2 15.9,9.9 16.5,12 14.7,13 14.3,15.1 12.2,15.2 10.9,16.9 "></polygon><polygon id="Check-Icon" fill="#FFFFFF" points="13.1,7.3 12.2,6.5 8.1,10.6 5.9,8.5 5,9.4 8,12.4 "></polygon></svg>
+                                        <svg className="mt-1 mx-1" height="18" width="18" version="1.1" x="0px" y="0px" enableBackground="new 0 0 18 18"><title>psa-verified</title><polygon id="Star-2" fill="#00DA60" points="9,16 7.1,16.9 5.8,15.2 3.7,15.1 3.4,13 1.5,12 2.2,9.9 1.1,8.2 2.6,6.7 2.4,4.6 4.5,4 5.3,2 7.4,2.4 9,1.1 10.7,2.4 12.7,2 13.6,4 15.6,4.6 15.5,6.7 17,8.2 15.9,9.9 16.5,12 14.7,13 14.3,15.1 12.2,15.2 10.9,16.9 "></polygon><polygon id="Check-Icon" fill="#FFFFFF" points="13.1,7.3 12.2,6.5 8.1,10.6 5.9,8.5 5,9.4 8,12.4 "></polygon></svg>
                                     </div>
                                     <div className="text-[#667781] text-xs">{each?.followers} followers</div>
                                 </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
 interface ViewProfileProps {
     name: string,
     profile: string,
@@ -15,7 +16,9 @@ const ViewProfile: React.FC<ViewProfileProps> = ({ name, profile, handleClose })
                     <Avatar className='cursor-pointer' alt="profile" src={profile || ''} sx={{ width: 40, height: 40 }} />
                     <div className='text-lg pt-2'>{name || 'Profile'}</div>
                 </div>
-                <CloseIcon fontSize='medium' onClick={()=>{handleClose(false)}}/>
+                <IconButton aria-label="close" size="large" onClick={() => { handleClose(false) }} >
+                    <CloseIcon fontSize='medium' />
+                </IconButton>
             </div>
             <div className='flex h-[90%] w-full'>
                 <div className='w-[25%]'></div>

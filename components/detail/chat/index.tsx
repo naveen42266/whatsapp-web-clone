@@ -8,6 +8,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import TextField from "@mui/material/TextField";
 import SendIcon from '@mui/icons-material/Send';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from "moment";
 import EmojiPicker from "emoji-picker-react";
 import Picker from "emoji-picker-react";
@@ -79,7 +80,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     const [reacted, setReacted] = useState({ type: "", id: "", emoji: null, view: false });
     const [isHovered, setIsHovered] = useState({ type: "", id: "" });
     const [tab, setTab] = useState<any>('All');
-    const [emojiHover, setEmojiHover] = useState({ type: '', boolean: false });
+    const [emojiHover, setEmojiHover] = useState({ type: '', boolean: true });
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         return index === 0 || messages[index].sender !== messages[index - 1].sender;
     };
@@ -124,9 +125,9 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
     }
     return (
         // reacted.view && setReacted({ ...reacted, view: false })
-        <div className="h-screen w-full" onClick={() => { emojiHover?.type === 'open' && !emojiHover?.boolean && emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), emojiHover?.type === 'count' && !emojiHover?.boolean && reacted.view && setReacted({ ...reacted, view: false }) }}>
-            <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={handleUserDetails}>
-                <div className="flex items-center gap-3">
+        <div className="h-screen w-full" onClick={() => { emojiHover?.type === 'open' && !emojiHover?.boolean && emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), emojiHover?.type === 'count' && !emojiHover?.boolean && reacted.view && setReacted({ ...reacted, view: false })  }}>
+            <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer">
+                <div className="flex items-center gap-3" onClick={handleUserDetails}>
                     <Avatar alt={user} src={whatsapp?.tabSection?.profile ?? ''} sx={{ width: 42, height: 42 }} />
                     <div>
                         <div className="text-base">{user}</div>
@@ -134,12 +135,22 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                     </div>
                 </div>
                 <div className="relative flex items-center gap-6 mr-1 text-[#54656f]">
-                    <VideocamIcon className="cursor-pointer" />
+                    <div className="flex gap-1 items-center cursor-pointer py-1 px-2 rounded-full" style={{ color: 'rgba(84, 101, 111, .5)', backgroundColor: whatsapp?.chat?.isVideoCall ? 'rgba(11, 20, 26, .1)' : '' }} onClick={() => { setWhatsapp((previous: any) => ({ ...previous, chat: { ...previous.chat, isVideoCall: !previous.chat.isVideoCall }, })); }}>
+                        <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" fill="none"><title>video-call</title><path d="M3.27096 7.31042C3 7.82381 3 8.49587 3 9.84V14.16C3 15.5041 3 16.1762 3.27096 16.6896C3.5093 17.1412 3.88961 17.5083 4.35738 17.7384C4.88916 18 5.58531 18 6.9776 18H13.1097C14.502 18 15.1982 18 15.7299 17.7384C16.1977 17.5083 16.578 17.1412 16.8164 16.6896C17.0873 16.1762 17.0873 15.5041 17.0873 14.16V9.84C17.0873 8.49587 17.0873 7.82381 16.8164 7.31042C16.578 6.85883 16.1977 6.49168 15.7299 6.26158C15.1982 6 14.502 6 13.1097 6H6.9776C5.58531 6 4.88916 6 4.35738 6.26158C3.88961 6.49168 3.5093 6.85883 3.27096 7.31042Z" fill="currentColor"></path><path d="M18.7308 9.60844C18.5601 9.75994 18.4629 9.97355 18.4629 10.1974V13.8026C18.4629 14.0264 18.5601 14.2401 18.7308 14.3916L20.9567 16.3669C21.4879 16.8384 22.3462 16.4746 22.3462 15.778V8.22203C22.3462 7.52542 21.4879 7.16163 20.9567 7.63306L18.7308 9.60844Z" fill="currentColor"></path></svg>
+                        <KeyboardArrowDownIcon className="h-4 w-4" />
+                    </div>
                     <SearchIcon className="cursor-pointer" />
                     <MoreVertIcon className="cursor-pointer" />
                 </div>
             </div>
-            <div className={`p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative`}>
+            <div className={`p-4 h-[80%] w-full ${whatsapp?.chat?.isVideoCall || emojiPickerVisible.isEmoji ? 'overflow-hidden pr-[27px]' : 'overflow-y-scroll custom-scroll'} relative`} onClick={()=>{whatsapp?.chat?.isVideoCall && setWhatsapp((previous: any) => ({ ...previous, chat: { ...previous.chat, isVideoCall: !previous.chat.isVideoCall }, }));}}>
+                {whatsapp?.chat?.isVideoCall && <div className="fixed right-28 top-[68px] w-[500px] p-3 flex justify-between items-center bg-white rounded-xl shadow-xl z-20">
+                    <div className="flex flex-col w-[70%]">
+                        <div className="text-[#111b21]">Make calls with the Windows app</div>
+                        <div className="text-[#54656f]">Download WhatsApp for Windows to start making calls.</div>
+                    </div>
+                    <span className="py-2 px-6 text-sm font-semibold text-white bg-[#008069] rounded-full cursor-pointer">Get the app</span>
+                </div>}
                 <div className="flex justify-center top-0 left-0 bottom-0 right-0 sticky">
                     <span className="text-[#54656f] text-sm px-2 py-1 rounded-md shadow-md" style={{ backgroundColor: "rgba(255, 255, 255)" }}>TUESDAY</span>
                 </div>
@@ -155,7 +166,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                                 {emojiPickerVisible.id === `${index}` && emojiPickerVisible.type === message.sender && emojiPickerVisible.isEmoji && (
                                     <div className={`absolute top-20 ${message.sender === 'user' ? 'right-[19px]' : 'left-[19px]'} w-[350px] h-[350px] z-20`} onMouseEnter={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: true })} onMouseLeave={() => setEmojiHover({ ...emojiHover, type: 'open', boolean: false })}>
                                         {/* <EmojiPicker height={'350px'} width={'350px'} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} /> */}
-                                        <Picker reactionsDefaultOpen={true} onReactionClick={(evt) => { onEmojiClick(evt.emoji) }} />
+                                        <Picker reactionsDefaultOpen={true} onReactionClick={(evt) => { onEmojiClick(evt.emoji) }} onEmojiClick={(evt) => onEmojiClick(evt.emoji)} />
                                     </div>
                                 )}
                                 {reacted.id === `${index}` && reacted.type === message.sender && reacted.view && (
@@ -185,9 +196,9 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                 </div>
             </div>
             <div className=" h-[7.5%] w-full bg-[#f0f2f5] p-2 flex items-center">
-                <div className="w-[5%] flex justify-center"> <svg color="#54656f" height="24" width="24" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path> </svg></div>
+                <div className="w-[5%] flex justify-center"> <svg color="#54656f" height="24" width="24" version="1.1" x="0px" y="0px" enableBackground="new 0 0 24 24"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path> </svg></div>
                 <div className="w-[5%] flex justify-center"><AddIcon className="text-[#54656f]" /></div>
-                <div className="bg-white w-[85%] rounded-lg flex items-center"> <TextField id="standard-basic" className="searchField ml-2 py-1" placeholder={'Type a message'} variant="standard" fullWidth InputProps={{ disableUnderline: true, }} value={message} onChange={(evt) => { setMessage(evt?.target?.value) }} /> </div>
+                <div className="bg-white w-[85%] rounded-lg flex items-center"> <TextField id="standard-basic" autoComplete="off" className="searchField ml-2 py-1" placeholder={'Type a message'} variant="standard" fullWidth InputProps={{ disableUnderline: true, }} value={message} onChange={(evt) => { setMessage(evt?.target?.value) }} /> </div>
                 <div className="w-[5%] flex justify-center pl-2">{message ? <SendIcon className="text-[#54656f]" onClick={() => { handleChat(message) }} /> : <MicIcon className="text-[#54656f]" />} </div>
             </div>
         </div>

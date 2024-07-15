@@ -152,7 +152,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
                         <div className="bg-[#f7f8fa] h-[55%] w-[35%] p-6 flex flex-col justify-between">
                             <div>
                                 <div className="text-xl text-[#3B4A54] mb-6">{switchScreen}</div>
-                                <div className="border-b-2 border-[#008069]">  <TextField id="standard-basic" className="searchField " placeholder={'Tell us how we can help'} variant="standard" fullWidth multiline rows={3} onChange={() => { }} /> </div>
+                                <div className="border-b-2 border-[#008069]">  <TextField id="standard-basic" autoComplete="off" className="searchField " placeholder={'Tell us how we can help'} variant="standard" fullWidth multiline rows={3} onChange={() => { }} /> </div>
                                 <div className="text-sm text-[#3B4A54] my-4">By clicking Send, you acknowledge WhatsApp may review diagnostic and performance information and the metadata associated with your account to try to troubleshoot and solve your reported issue. <a rel="noopener noreferrer" className="text-[#027eb5]" href="https://faq.whatsapp.com/676672070766141?lang=en" target="_blank">Learn more</a></div>
                                 <a role="button" className="text-[#027eb5] text-sm" rel="noreferrer noopener" target="_blank">Get support via email</a>
                             </div>

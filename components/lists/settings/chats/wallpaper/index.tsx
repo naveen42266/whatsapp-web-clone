@@ -15,10 +15,10 @@ const Wallpaper: React.FC<WallpaperProps> = ({ tab, handleBack }) => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const colorsList = ["#EFEAE2", "#87CEFA", "#98FB98", "#FF69B4", "#E0FFFF", "#DDA0DD", "#FFD700", "#FFB6C1", "#7CFC00", "#ADD8E6", "#D8BFD8", "#DEB887", "#AFEEEE", "#E6E6FA", "#F0E68C", "#FFDEAD", "#B0E0E6", "#FFFACD", "#FFA07A", "#00CED1", "#4682B4", "#F4A460", "#D3D3D3", "#9ACD32", "#EEDD82", "#EE82EE", "#8FBC8F", "#FFA500"]
     function handleChangeBgColor(key: string, color: string) {
-        setWhatsapp((prevStatus: { wallpaper: any; }) => ({
-            ...prevStatus,
+        setWhatsapp((previous: { wallpaper: any; }) => ({
+            ...previous,
             wallpaper: {
-                ...prevStatus.wallpaper,
+                ...previous.wallpaper,
                 [key]: color,
             },
         }));

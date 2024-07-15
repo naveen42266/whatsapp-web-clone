@@ -22,7 +22,7 @@ const Account: React.FC<AccountProps> = ({ tab, handleBack, handleToOpen}) => {
             </div>
             <div className="hover:bg-[#f5f6f6] cursor-pointer" onClick={()=>{handleToOpen('Request account info')}}>
                 <div className="flex items-center px-6 py-4 gap-6">
-                    <div><svg color="#54656f" viewBox="0 0 24 24" height="24" width="24" fill="none"><title>settings-document</title><path fill-rule="evenodd" clip-rule="evenodd" d="M6 2C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8.83C20 8.3 19.79 7.79 19.41 7.42L14.58 2.59C14.21 2.21 13.7 2 13.17 2H6ZM13 8V3.5L18.5 9H14C13.45 9 13 8.55 13 8ZM8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7.44772 14 8 14H16C16.5523 14 17 13.5523 17 13C17 12.4477 16.5523 12 16 12H8ZM14 17C14 16.4477 13.5523 16 13 16H8C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H13C13.5523 18 14 17.5523 14 17Z" fill="currentColor"></path></svg></div>
+                    <div><svg color="#54656f" viewBox="0 0 24 24" height="24" width="24" fill="none"><title>settings-document</title><path fillRule="evenodd" clipRule="evenodd" d="M6 2C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8.83C20 8.3 19.79 7.79 19.41 7.42L14.58 2.59C14.21 2.21 13.7 2 13.17 2H6ZM13 8V3.5L18.5 9H14C13.45 9 13 8.55 13 8ZM8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7.44772 14 8 14H16C16.5523 14 17 13.5523 17 13C17 12.4477 16.5523 12 16 12H8ZM14 17C14 16.4477 13.5523 16 13 16H8C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H13C13.5523 18 14 17.5523 14 17Z" fill="currentColor"></path></svg></div>
                     <div className="text-[17px] text-[#111b21]">Request account info</div>
                 </div>
             </div>

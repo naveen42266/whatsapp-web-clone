@@ -26,6 +26,9 @@ export const data =
     hoverColor: '',
     isWallpaper: false,
     bgImage: 'bgImg'
+  },
+  chat:{
+    isVideoCall:false
   }
 }
 
