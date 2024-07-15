@@ -127,7 +127,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
         <div className="h-screen w-full" onClick={() => { emojiHover?.type === 'open' && !emojiHover?.boolean && emojiPickerVisible.isEmoji && setEmojiPickerVisible({ type: '', id: '', isEmoji: false }), emojiHover?.type === 'count' && !emojiHover?.boolean && reacted.view && setReacted({ ...reacted, view: false }) }}>
             <div className="h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={handleUserDetails}>
                 <div className="flex items-center gap-3">
-                    <Avatar alt={user} src={''} sx={{ width: 42, height: 42 }} />
+                    <Avatar alt={user} src={whatsapp?.tabSection?.profile ?? ''} sx={{ width: 42, height: 42 }} />
                     <div>
                         <div className="text-base">{user}</div>
                         <div className="text-[13px] text-[#667781]">Last seen today at {messages?.[messages?.length - 1]?.time}</div>

@@ -18,7 +18,7 @@ export const ChatDetails = {
       timestamp: "2024-05-25T14:23:00Z",
       type: "text",
       content: "Hey Bob, how are you?",
-      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6ipU_NErJBYWvIn_EId6wm3tnYWCZXWRAPg&s",
     },
     {
       id: "2",
@@ -34,7 +34,7 @@ export const ChatDetails = {
       timestamp: "2024-05-25T14:26:00Z",
       type: "text",
       content: "I'm doing great, thanks!",
-      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6ipU_NErJBYWvIn_EId6wm3tnYWCZXWRAPg&s",
     },
     {
       id: "4",
@@ -56,7 +56,7 @@ export const ChatDetails = {
         url: "https://example.com/audio1.mp3",
         duration: "00:00:30",
       },
-      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3FqoYVPZxd_5TH71L8ccH4Mf7CxqWD0OxnPOL8_3bg&s",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6ipU_NErJBYWvIn_EId6wm3tnYWCZXWRAPg&s",
     },
     {
       id: "6",
@@ -75,6 +75,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T14:23:00Z",
       type: "text",
       content: "I'm good ka. How about you?",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5vJ05JD4QiKhCyOnzHNTIxdV1niKKD7Tk3A&s",
     },
     {
       id: "8",
@@ -82,6 +83,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T14:03:00Z",
       type: "text",
       content: "Chennai epadi bruh?",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZFUWVo4UymwzqloVFx_icorMG_Z2Fsn7P0Q&s",
     },
     {
       id: "9",
@@ -89,6 +91,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T15:03:00Z",
       type: "text",
       content: "Hey, what's up?",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpuetQKWYVouoPuARG0gG2KpiReJcMO7okyA&s",
     },
     {
       id: "10",
@@ -96,6 +99,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T16:03:00Z",
       type: "text",
       content: "Are we meeting today?",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1n5x3JhCINldzgXnWFrQR3ftPK8wqJboOLg&s",
     },
     {
       id: "11",
@@ -103,6 +107,8 @@ export const ChatDetails = {
       timestamp: "2024-05-26T17:03:00Z",
       type: "text",
       content: "I have completed the task.",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbqWk2t4qrBVYBssUfvvpcre5I2I25jEkMvg&s",
+
     },
     {
       id: "12",
@@ -110,6 +116,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T18:03:00Z",
       type: "text",
       content: "Let's catch up soon.",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKKe66Q_FBZG2K8U3sHDN19xjL5oy195hoaQ&s",
     },
     {
       id: "13",
@@ -117,6 +124,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T19:03:00Z",
       type: "text",
       content: "Where is the meeting?",
+      profile: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVHegWVljxFY66mGSurj4uEtat4HSunJL4Bw&s",
     },
     {
       id: "14",
@@ -124,6 +132,7 @@ export const ChatDetails = {
       timestamp: "2024-05-26T20:03:00Z",
       type: "text",
       content: "I will be there in 10 minutes.",
+      profile: "https://img.freepik.com/free-photo/man-portrait-with-blue-lights-visual-effects_23-2149419469.jpg",
     },
   ],
 };

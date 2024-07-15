@@ -44,7 +44,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ handleDetailContent }) =>
     useEffect(() => { setSwitchScreen('') }, [whatsapp?.tab])
     function selectedTab() {
         if (whatsapp?.tab === 'chats') {
-            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string) => { handleDetailContent(user, mobile, '', 'chat') }} />
+            return <Chats tab={whatsapp?.tab} handleChatUser={(user: string, mobile: string, profile: string) => { handleDetailContent(user, mobile, profile, 'chat') }} />
         }
         else if (whatsapp?.tab === 'communities') {
             return <Communities tab={whatsapp?.tab} />

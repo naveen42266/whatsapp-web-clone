@@ -19,7 +19,7 @@ import moment from "moment";
 import { WhatsappContext } from "../../../useContext";
 interface ChatsProps {
     tab: string;
-    handleChatUser: (user: string, mobile: string) => void;
+    handleChatUser: (user: string, mobile: string, profile: string) => void;
 }
 const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
@@ -225,7 +225,7 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
                 <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
             </div> */}
             <div className="h-[74%] w-full overflow-y-scroll custom-scroll">
-                <div className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == 'Meta AI' ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: 'Meta AI', hover: true })} onMouseLeave={() => setHover({ name: 'Meta AI', hover: false })} onClick={() => { handleChatUser('Meta AI', 'Meta AI'), setPerson('Meta AI') }}>
+                <div className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == 'Meta AI' ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: 'Meta AI', hover: true })} onMouseLeave={() => setHover({ name: 'Meta AI', hover: false })} onClick={() => { handleChatUser('Meta AI', 'Meta AI','https://media-maa2-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s96x128&ccb=10-5&oh=01_Q5AaIBNppfgH7Xr8OK38udLJWHfbI8JMkUAFYHPmofJhqLje&oe=66ACC944&_nc_sid=e3bc14'), setPerson('Meta AI') }}>
                     <div className="col-span-2 items-center">
                         <Avatar alt="Naveen" src={'https://media-maa2-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s96x128&ccb=10-5&oh=01_Q5AaIBNppfgH7Xr8OK38udLJWHfbI8JMkUAFYHPmofJhqLje&oe=66ACC944&_nc_sid=e3bc14'} sx={{ width: 50, height: 50 }} />
                     </div>
@@ -247,7 +247,7 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
                 </div>
                 {handleChats()?.participants?.map((each, index) => {
                     return (
-                        <div key={index} className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })} onClick={() => { handleChatUser(each?.name, each?.id), setPerson(each?.name) }}>
+                        <div key={index} className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == each.name ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: each?.name, hover: true })} onMouseLeave={() => setHover({ name: each?.name, hover: false })} onClick={() => { handleChatUser(each?.name, each?.id, ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.profile ?? ''), setPerson(each?.name) }}>
                             <div className="col-span-2 items-center">
                                 <Avatar alt="Naveen" src={ChatDetails?.messages?.find((msg) => msg.sender === each.id)?.profile ?? ''} sx={{ width: 50, height: 50 }} />
                             </div>
