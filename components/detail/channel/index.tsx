@@ -27,7 +27,7 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
         return messages[index].sender !== messages[index - 1].sender;
     };
     function handleUserDetails() {
-        setWhatsapp({ ...whatsapp, channelProfile: true });
+        setWhatsapp({ ...whatsapp, channelProfile: true, userProfile: true, isSearch: false, });
     }
 
     return (
@@ -69,7 +69,7 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
                 </div>
             </div>
             <div className=" h-[7.5%] w-full bg-[#f0f2f5]  flex flex-col justify-center text-[#667781]">
-                <div className="text-center text-xs">This channel has added privacy for your profile and phone number. <a role="button" className="text-[#027eb5] text-sm" rel="noreferrer noopener" target="_blank">Learn more</a><CloseIcon className="h-4 w-4 ml-2 p-1 bg-slate-600 text-white rounded-full"/></div>
+                <div className="text-center text-xs">This channel has added privacy for your profile and phone number. <a role="button" className="text-[#027eb5] text-sm" rel="noreferrer noopener" target="_blank">Learn more</a><CloseIcon className="h-4 w-4 ml-2 p-1 bg-slate-600 text-white rounded-full" /></div>
             </div>
         </div>
     )

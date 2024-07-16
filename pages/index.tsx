@@ -28,8 +28,9 @@ export const data =
     bgImage: 'bgImg'
   },
   chat:{
-    isVideoCall:false
-  }
+    isVideoCall:false,
+  },
+  isSearch: false
 }
 
 export default function App() {

@@ -15,7 +15,7 @@
     font-size: 14px;
     color: black;
   }
-  
+
 }
 
 .animation {
@@ -93,4 +93,8 @@
   .MuiButtonBase-root.MuiRadio-root.Mui-checked {
     color: #008069;
   }
+}
+
+.react-datepicker__header {
+  background-color: #008069;
 }

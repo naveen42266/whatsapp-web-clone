@@ -9,6 +9,7 @@ import Channel from "../detail/channel";
 import ChannelDetails from "../channelDetails";
 import { Drawer } from "@mui/material";
 import ViewProfile from "../viewProfile";
+import SearchScreen from "../searchScreen";
 
 export default function Home() {
     const [selectedTab, setSelectedTab] = useState<string>('chats');
@@ -43,6 +44,7 @@ export default function Home() {
                 },
                 userProfile: false,
                 channelProfile: false,
+                isSearch: false
             }));
         }
         else {
@@ -62,11 +64,11 @@ export default function Home() {
     }
     function handleViewProfile() {
         setWhatsapp((prevWhatsapp: { tabSection: any; }) => ({
-          ...prevWhatsapp,
-          tabSection: {
-            ...prevWhatsapp.tabSection,
-            isProfile: false,
-          },
+            ...prevWhatsapp,
+            tabSection: {
+                ...prevWhatsapp.tabSection,
+                isProfile: false,
+            },
         }));
     }
     return (
@@ -80,14 +82,14 @@ export default function Home() {
                     </div>
                     <div className="h-[100%] w-[88%] bg-white"><ListComponent tab={selectedTab} handleDetailContent={(value: string, mobile: string, profile: string, key: string) => { handleSetTabDetails(key, value, mobile, profile) }} /></div>
                 </div>
-                <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile || whatsapp?.channelProfile ? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '}`} style={{ backgroundColor: whatsapp?.wallpaper?.hoverColor ? whatsapp?.wallpaper?.hoverColor : whatsapp?.wallpaper?.color }}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
+                <div className={`h-[100%] hidden sm:block w-0 ${whatsapp?.userProfile || whatsapp?.channelProfile || whatsapp?.isSearch? 'sm:w-[32%] md:w-[36%]' : 'sm:w-[60%] md:w-[66%] '}`} style={{ backgroundColor: whatsapp?.wallpaper?.hoverColor ? whatsapp?.wallpaper?.hoverColor : whatsapp?.wallpaper?.color }}> {/*${whatsapp?.tabSection?.title == 'chat' ? 'bgImg' : ''}*/}
                     {handleDetailScreen()}
                 </div>
-                <div className={`h-[100%] sm:w-[28%] md:w-[30%] ${whatsapp?.userProfile || whatsapp?.channelProfile ? 'block' : "hidden"}`}>
-                    {whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails />}
+                <div className={`h-[100%] sm:w-[28%] md:w-[30%] ${whatsapp?.userProfile || whatsapp?.channelProfile || whatsapp?.isSearch ? 'block' : "hidden"}`}>
+                    {whatsapp?.isSearch ? <SearchScreen /> : whatsapp?.tabSection?.title == 'chat' ? <UserDetails /> : <ChannelDetails />}
                 </div>
             </div>
-            <Drawer anchor="right" open={whatsapp?.tabSection?.isProfile} onClose={()=>{handleViewProfile()}}  sx={{ '& .MuiDrawer-paper': { width: '100%' , opacity: 0.9} }}><ViewProfile name={whatsapp?.tabSection?.user} profile={whatsapp?.tabSection?.profile} handleClose={(value: boolean)=> {handleViewProfile()} }/></Drawer>
+            <Drawer anchor="right" open={whatsapp?.tabSection?.isProfile} onClose={() => { handleViewProfile() }} sx={{ '& .MuiDrawer-paper': { width: '100%', opacity: 0.9 } }}><ViewProfile name={whatsapp?.tabSection?.user} profile={whatsapp?.tabSection?.profile} handleClose={(value: boolean) => { handleViewProfile() }} /></Drawer>
         </div>
     );
 }
