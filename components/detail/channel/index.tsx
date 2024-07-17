@@ -2,6 +2,7 @@ import React from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Avatar from "@mui/material/Avatar";
 import CloseIcon from '@mui/icons-material/Close';
+import VerifiedIcon from '@mui/icons-material/Verified';
 import { WhatsappContext } from "../../../useContext";
 
 interface ChannelProps {
@@ -32,11 +33,11 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
 
     return (
         <div className={`h-screen w-full`} > {/*style={{ backgroundImage: 'url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png)' }}*/}
-            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer" onClick={() => { handleUserDetails() }}>
-                <div className="flex items-center gap-3">
+            <div className=" h-[7.5%] bg-[#f0f2f5] p-2 flex justify-between cursor-pointer">
+                <div className="flex items-center gap-3" onClick={() => { handleUserDetails() }}>
                     <Avatar alt="Naveen" src={whatsapp?.tabSection?.profile || ''} sx={{ width: "42px", height: "42px" }} />
                     <div>
-                        <div>{user}</div>
+                        <div>{user}{' '}<VerifiedIcon className="h-[18px] w-[18px] text-[#009de2]"/></div>
                         <div className="text-sm text-[#667781]">{whatsapp?.tabSection?.followers} followers</div>
                     </div>
                 </div>

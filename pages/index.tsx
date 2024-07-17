@@ -29,8 +29,9 @@ export const data =
   },
   chat:{
     isVideoCall:false,
+    isMenu: false
   },
-  isSearch: false
+  isSearch: false,
 }
 
 export default function App() {
