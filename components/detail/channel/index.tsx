@@ -22,6 +22,7 @@ const messages = [
 ];
 const Channel: React.FC<ChannelProps> = ({ user }) => {
     const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext)
+    const menuLists = ['Contact info', 'Select updates', 'Close channel', 'Report']
 
     const isFirstMessageOfSender = (messages: { sender: any; }[], index: number) => {
         if (index === 0) return true;
@@ -37,7 +38,7 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
                 <div className="flex items-center gap-3" onClick={() => { handleUserDetails() }}>
                     <Avatar alt="Naveen" src={whatsapp?.tabSection?.profile || ''} sx={{ width: "42px", height: "42px" }} />
                     <div>
-                        <div>{user}{' '}<VerifiedIcon className="h-[18px] w-[18px] text-[#009de2]"/></div>
+                        <div>{user}{' '}<VerifiedIcon className="h-[18px] w-[18px] text-[#009de2]" /></div>
                         <div className="text-sm text-[#667781]">{whatsapp?.tabSection?.followers} followers</div>
                     </div>
                 </div>
@@ -45,10 +46,19 @@ const Channel: React.FC<ChannelProps> = ({ user }) => {
                     <div className="flex flex-col justify-center items-center my-5 border border-slate-200 hover:shadow-md rounded-full">
                         <span className="text-white bg-[#008069] px-4 py-1 rounded-full cursor-pointer">Follow</span>
                     </div>
-                    <div className="cursor-pointer"><MoreVertIcon /></div>
+                    <div className="py-1 px-2 rounded-full" style={{ backgroundColor: whatsapp?.chat?.isMenu ? 'rgba(11, 20, 26, .1)' : '' }} onClick={() => { setWhatsapp((previous: any) => ({ ...previous, chat: { ...previous.chat, isVideoCall: false, isMenu: !previous.chat.isMenu }, })); }}>
+                        <MoreVertIcon className="cursor-pointer" />
+                    </div>
                 </div>
             </div>
             <div className="p-4 h-[80%] w-full overflow-y-scroll custom-scroll relative">
+                {whatsapp?.chat?.isMenu && <div className="fixed right-10 top-[68px] w-[250px] py-2 bg-white rounded-[4px] shadow-xl z-20">
+                    {menuLists?.map((ele, index) => {
+                        return (
+                            <div key={index} className="py-2 px-5 hover:bg-[#f5f6f6] text-[#3b4a54] text-sm">{ele}</div>
+                        )
+                    })}
+                </div>}
                 <div className="flex justify-center top-0 left-0 bottom-0 right-0 sticky">
                     <span className="text-[#54656f] text-sm px-2 py-1 rounded-md shadow-md" style={{ backgroundColor: "rgba(255, 255, 255)" }}>TUESDAY</span>
                 </div>
