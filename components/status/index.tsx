@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LinearWithValueLabel from "./animatedLinearProgress";
@@ -13,11 +13,16 @@ import TextField from "@mui/material/TextField";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { WhatsappContext } from "../../useContext";
+import { whatsappStatusData } from "../../json";
 const Status = () => {
     const [pause, setPause] = useState(false);
     const [mute, setMute] = useState(false);
-    const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext)
-    function handleCancelStatus(){
+    const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const currentStatus = whatsappStatusData.find(status => status.name === whatsapp?.status?.user);
+    const displayedStatus = whatsappStatusData[currentIndex];
+
+    function handleCancelStatus() {
         setWhatsapp((prevStatus: { status: any; }) => ({
             ...prevStatus,
             status: {
@@ -26,23 +31,44 @@ const Status = () => {
             }
         }));
     }
+    const handleNextStatus = () => {
+        setCurrentIndex((prevIndex) => {
+            const nextIndex = (prevIndex + 1) % whatsappStatusData.length;
+            return nextIndex;
+        });
+    };
+
+    const handlePreviousStatus = () => {
+        setCurrentIndex((preIndex) => {
+            const prevIndex = (preIndex - 1 + whatsappStatusData.length) % whatsappStatusData.length;
+            return prevIndex;
+        });
+    };
+
+    useEffect(() => {
+        if (whatsapp?.status?.user) {
+            const initialIndex = whatsappStatusData.findIndex(status => status.name === whatsapp?.status?.user);
+            setCurrentIndex(initialIndex !== -1 ? initialIndex : 0);
+        }
+    }, [whatsapp?.status?.user]);
+
     // https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg
     return (
-        <div className="h-screen w-full overflow-y-hidden relative" style={{ backgroundImage: `url(${whatsapp?.status?.status || 'https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg'})` }}>
+        <div className="h-screen w-full overflow-y-hidden relative" style={{ backgroundImage: `url(${displayedStatus?.status || 'https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg'})` }}>
             <div className="grid grid-cols-12 text-white">
                 <div className="col-span-4 relative">
                     <div className="absolute inset-0 bg-black opacity-80"></div>
                     <div className="absolute inset-0 backdrop-blur-sm"></div>
                     <div className="relative p-4">
-                        <ArrowBackOutlinedIcon className="cursor-pointer" onClick={()=>{handleCancelStatus()}}/>
+                        <ArrowBackOutlinedIcon className="cursor-pointer" onClick={() => { handleCancelStatus() }} />
                     </div>
                     <div className="relative p-4 h-[80%] flex flex-col justify-center items-start">
-                        <ArrowBackIosIcon className="bg-slate-800 pl-3 py-1.5 h-10 w-10 rounded-full cursor-pointer" />
+                        <ArrowBackIosIcon className="bg-slate-800 pl-3 py-1.5 h-10 w-10 rounded-full cursor-pointer" onClick={handlePreviousStatus} />
                     </div>
                 </div>
                 <div className="col-span-4">
                     <div className="relative">
-                        <img loading="lazy" src={whatsapp?.status?.status} className="h-screen w-full" alt="" />
+                        <img loading="lazy" src={displayedStatus?.status} className="h-screen w-full" alt="" />
                         <div className="absolute top-4 left-4 right-4 ">
                             <LinearWithValueLabel />
                             <div className="flex justify-between py-4">
@@ -51,8 +77,8 @@ const Status = () => {
                                         <AccountCircleIcon className="h-10 w-10" />
                                     </div>
                                     <div>
-                                        <div className="text-base">{whatsapp?.status?.user}</div>
-                                        <div className="text-xs text-slate-300">Today at 8:09 AM</div>
+                                        <div className="text-base">{displayedStatus?.name}</div>
+                                        <div className="text-xs text-slate-300">{new Date(displayedStatus?.updated).toLocaleTimeString()}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
@@ -63,7 +89,7 @@ const Status = () => {
                             </div>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40">
-                            <div className="text-center text-white">{whatsapp?.status?.content}</div>
+                            <div className="text-center text-white">{displayedStatus?.content}</div>
                             <div className="h-20"></div>
                         </div>
                     </div>
@@ -72,10 +98,10 @@ const Status = () => {
                     <div className="absolute inset-0 bg-black opacity-80"></div>
                     <div className="absolute inset-0 backdrop-blur-sm"></div>
                     <div className="relative p-4 text-end">
-                        <CloseOutlinedIcon className="cursor-pointer" onClick={()=>{handleCancelStatus()}}/>
+                        <CloseOutlinedIcon className="cursor-pointer" onClick={() => { handleCancelStatus() }} />
                     </div>
                     <div className="relative p-4 h-[80%] flex flex-col justify-center items-end">
-                        <ArrowForwardIosIcon className="bg-slate-800 px-1.5 py-1.5 h-10 w-10 rounded-full cursor-pointer" />
+                        <ArrowForwardIosIcon className="bg-slate-800 px-1.5 py-1.5 h-10 w-10 rounded-full cursor-pointer" onClick={handleNextStatus} />
                     </div>
                 </div>
             </div>
