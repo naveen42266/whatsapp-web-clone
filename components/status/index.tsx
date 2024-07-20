@@ -14,11 +14,13 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { WhatsappContext } from "../../useContext";
 import { whatsappStatusData } from "../../json";
+import { Avatar } from "@mui/material";
 const Status = () => {
     const [pause, setPause] = useState(false);
     const [mute, setMute] = useState(false);
     const { whatsapp, setWhatsapp } = React.useContext<any>(WhatsappContext);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [progress, setProgress] = useState(0); // Track progress bar value
     const currentStatus = whatsappStatusData.find(status => status.name === whatsapp?.status?.user);
     const displayedStatus = whatsappStatusData[currentIndex];
 
@@ -36,6 +38,7 @@ const Status = () => {
             const nextIndex = (prevIndex + 1) % whatsappStatusData.length;
             return nextIndex;
         });
+        setProgress(-10) //0
     };
 
     const handlePreviousStatus = () => {
@@ -43,14 +46,28 @@ const Status = () => {
             const prevIndex = (preIndex - 1 + whatsappStatusData.length) % whatsappStatusData.length;
             return prevIndex;
         });
+        setProgress(-10) //0
     };
+   
 
     useEffect(() => {
-        if (whatsapp?.status?.user) {
-            const initialIndex = whatsappStatusData.findIndex(status => status.name === whatsapp?.status?.user);
-            setCurrentIndex(initialIndex !== -1 ? initialIndex : 0);
-        }
-    }, [whatsapp?.status?.user]);
+        const timer = setInterval(() => {
+            if (!pause) {
+                setProgress((prevProgress: number) => {
+                    if (prevProgress >= 100) {
+                        // Change status when progress reaches 100%
+                        handleNextStatus();
+                        return -10;  // 0 // Reset progress bar
+                    }
+                    return prevProgress + (100 / (4.5 * 10)); // Increment progress
+                });
+            }
+        }, 100); // Update progress every 100ms
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [pause, currentIndex]);
 
     // https://assets.hongkiat.com/uploads/marvel-wallpapers/mobile/preview/marvel-mobile-wallpaper-1.jpg
     return (
@@ -70,11 +87,11 @@ const Status = () => {
                     <div className="relative">
                         <img loading="lazy" src={displayedStatus?.status} className="h-screen w-full" alt="" />
                         <div className="absolute top-4 left-4 right-4 ">
-                            <LinearWithValueLabel />
+                            <LinearWithValueLabel progress={progress} />
                             <div className="flex justify-between py-4">
                                 <div className="flex items-center gap-3 cursor-pointer">
                                     <div>
-                                        <AccountCircleIcon className="h-10 w-10" />
+                                        <Avatar src={displayedStatus?.status} className="h-10 w-10" />
                                     </div>
                                     <div>
                                         <div className="text-base">{displayedStatus?.name}</div>
