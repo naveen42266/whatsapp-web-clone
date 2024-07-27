@@ -146,7 +146,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                 </div>
             </div>
             <div className={`p-4 h-[80%] w-full relative ${whatsapp?.chat?.isVideoCall || emojiPickerVisible.isEmoji ? 'overflow-hidden pr-[27px]' : 'overflow-y-scroll custom-scroll'}`} onClick={() => { (whatsapp?.chat?.isVideoCall || whatsapp?.chat?.isMenu) && setWhatsapp((previous: any) => ({ ...previous, chat: { ...previous.chat, isVideoCall: false, isMenu: false }, })); }}>
-                {whatsapp?.chat?.isVideoCall && <div className="fixed right-28 top-[68px] w-[500px] p-3 flex justify-between items-center bg-white rounded-xl shadow-xl z-20">
+                {whatsapp?.chat?.isVideoCall && <div className="fixed right-28 top-[68px] w-[500px] p-3 flex justify-between items-center bg-white rounded-xl shadow-xl z-30">
                     <div className="flex flex-col w-[70%]">
                         <div className="text-[#111b21]">Make calls with the Windows app</div>
                         <div className="text-[#54656f]">Download WhatsApp for Windows to start making calls.</div>
@@ -166,7 +166,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                 <div className="p-6">
                     {list.map((message, index) => (
                         <div key={index} className={`flex cursor-pointer ${message.sender === 'user' ? 'justify-end' : 'justify-start'} ${message.react ? 'mb-[26px]' : 'mb-[3px]'}`} onMouseEnter={() => setIsHovered({ type: message.sender, id: `${index}` })} onMouseLeave={() => setIsHovered({ type: "", id: "" })}>
-                            {message.sender !== 'user' && isFirstMessageOfSender(list, index) && <div className="z-10 w-0 h-0 rotate-180 border-t-[15px] border-t-transparent border-l-[15px] border-l-white" />}
+                            {message.sender !== 'user' && isFirstMessageOfSender(list, index) ? <div className="z-10 w-0 h-0 rotate-180 border-t-[15px] border-t-transparent border-l-[15px] border-l-white" /> : <div className="w-[15px]"></div>}
                             {message.sender === 'user' && isHovered.type === 'user' && isHovered.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 mr-2 rounded-full" onClick={() => setEmojiPickerVisible({ type: message.sender, id: `${index}`, isEmoji: !emojiPickerVisible.isEmoji })} />}
                             <div className={`relative shadow-md rounded-lg px-3 py-1 max-w-[65%] ${message.sender === 'user' ? 'bg-[#d9fdd3] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
                                 {isHovered.id === `${index}` && <div className={`absolute top-0 right-0 ${message.sender === 'user' ? 'bg-[#d9fdd3]' : ''}`}><KeyboardArrowDownIcon className="text-gray-400" /></div>}
@@ -200,7 +200,7 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({ user }) => {
                                 )}
                             </div>
                             {message.sender !== 'user' && isHovered.type !== 'user' && isHovered.id === `${index}` && <EmojiEmotionsIcon className="text-white bg-[#bbbfc1] p-0.5 mt-3 ml-2 rounded-full" onClick={() => setEmojiPickerVisible({ type: message.sender, id: `${index}`, isEmoji: !emojiPickerVisible.isEmoji })} />}
-                            {message.sender === 'user' && isFirstMessageOfSender(list, index) && <div className="z-10 w-0 h-0 rotate-90 border-t-[15px] border-t-transparent border-l-[15px] border-l-[#d9fdd3]" />}
+                            {message.sender === 'user' && isFirstMessageOfSender(list, index) ? <div className="z-10 w-0 h-0 rotate-90 border-t-[15px] border-t-transparent border-l-[15px] border-l-[#d9fdd3]" /> : <div className="w-[15px]"></div>}
                         </div>
                     ))}
                 </div>
