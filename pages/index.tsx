@@ -31,6 +31,9 @@ export const data =
     isVideoCall:false,
     isMenu: false
   },
+  chats:{
+    isMenu: false
+  },
   isSearch: false,
 }
 

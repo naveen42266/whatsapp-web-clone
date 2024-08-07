@@ -24,6 +24,7 @@ interface ChatsProps {
 const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
     const { whatsapp, setWhatsapp } = useContext<any>(WhatsappContext)
     const tags = ['all', 'unread', 'groups']
+    const menuLists = ['New group', 'Starred messages', 'Select chats', 'Log out']
     const [searchTerm, setSearchTerm] = useState<string>('')
     const [person, setPerson] = useState<string>('')
     const [tag, setTag] = useState<string>('all')
@@ -144,13 +145,22 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
         return <div className="flex items-center gap-1"></div>
     }
     return (
-        <div className="h-screen w-full">
+        <div className="h-screen w-full relative">
             <div className="sticky top-0 bg-white">
                 <div className="flex justify-between items-center py-3 px-6">
                     <div className="text-[22px] font-bold capitalize">{tab}</div>
                     <div className="relative flex items-center gap-6 mr-1">
                         <div className="cursor-pointer"><svg color="#54656f" height="24" width="24" fill="none"><title>new-chat-outline</title><path d="M9.53277 12.9911H11.5086V14.9671C11.5086 15.3999 11.7634 15.8175 12.1762 15.9488C12.8608 16.1661 13.4909 15.6613 13.4909 15.009V12.9911H15.4672C15.9005 12.9911 16.3181 12.7358 16.449 12.3226C16.6659 11.6381 16.1606 11.0089 15.5086 11.0089H13.4909V9.03332C13.4909 8.60007 13.2361 8.18252 12.8233 8.05119C12.1391 7.83391 11.5086 8.33872 11.5086 8.991V11.0089H9.49088C8.83941 11.0089 8.33411 11.6381 8.55097 12.3226C8.68144 12.7358 9.09947 12.9911 9.53277 12.9911Z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M0.944298 5.52617L2.99998 8.84848V17.3333C2.99998 18.8061 4.19389 20 5.66665 20H19.3333C20.8061 20 22 18.8061 22 17.3333V6.66667C22 5.19391 20.8061 4 19.3333 4H1.79468C1.01126 4 0.532088 4.85997 0.944298 5.52617ZM4.99998 8.27977V17.3333C4.99998 17.7015 5.29845 18 5.66665 18H19.3333C19.7015 18 20 17.7015 20 17.3333V6.66667C20 6.29848 19.7015 6 19.3333 6H3.58937L4.99998 8.27977Z" fill="currentColor"></path></svg></div>
-                        <div className="cursor-pointer"><MoreVertIcon className="text-[#54656f]" /></div>
+                        <div className="py-1 px-2 rounded-full" style={{ backgroundColor: whatsapp?.chats?.isMenu ? 'rgba(11, 20, 26, .1)' : '' }} onClick={() => { setWhatsapp((previous: any) => ({ ...previous, chats: { ...previous.chats, isMenu: !previous.chats.isMenu }, })); }}>
+                            <MoreVertIcon className="cursor-pointer" />
+                        </div>
+                        {whatsapp?.chats?.isMenu && <div className="absolute right-4 top-10 w-[250px] py-2 bg-white rounded-[4px] shadow-xl">
+                            {menuLists?.map((ele, index) => {
+                                return (
+                                    <div key={index} className="py-2 px-5 hover:bg-[#f5f6f6] text-[#3b4a54] text-sm">{ele}</div>
+                                )
+                            })}
+                        </div>}
                     </div>
                 </div>
                 <div className="bg-[#f0f2f5] rounded-md mx-3 mt-2 flex items-center py-1">
@@ -225,9 +235,9 @@ const Chats: React.FC<ChatsProps> = ({ tab, handleChatUser }) => {
                 <div className="col-span-10 pt-4 border-b border-[#e9edef]"></div>
             </div> */}
             <div className="h-[74%] w-full overflow-y-scroll custom-scroll">
-                <div className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == 'Meta AI' ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: 'Meta AI', hover: true })} onMouseLeave={() => setHover({ name: 'Meta AI', hover: false })} onClick={() => { handleChatUser('Meta AI', 'Meta AI','https://media-maa2-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s96x128&ccb=10-5&oh=01_Q5AaIBNppfgH7Xr8OK38udLJWHfbI8JMkUAFYHPmofJhqLje&oe=66ACC944&_nc_sid=e3bc14'), setPerson('Meta AI') }}>
+                <div className={`grid grid-cols-12 items-center cursor-pointer pl-4 pt-3 ${whatsapp?.tabSection?.user == 'Meta AI' ? 'bg-[#f0f2f5]' : 'bg-white hover:bg-[#f5f6f6]'} `} onMouseEnter={() => setHover({ name: 'Meta AI', hover: true })} onMouseLeave={() => setHover({ name: 'Meta AI', hover: false })} onClick={() => { handleChatUser('Meta AI', 'Meta AI', 'https://media-maa2-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s96x128&ccb=10-5&oh=01_Q5AaIBNppfgH7Xr8OK38udLJWHfbI8JMkUAFYHPmofJhqLje&oe=66ACC944&_nc_sid=e3bc14'), setPerson('Meta AI') }}>
                     <div className="col-span-2 items-center">
-                        <Avatar alt="Naveen" src={'https://media-maa2-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s96x128&ccb=10-5&oh=01_Q5AaIBNppfgH7Xr8OK38udLJWHfbI8JMkUAFYHPmofJhqLje&oe=66ACC944&_nc_sid=e3bc14'} sx={{ width: 50, height: 50 }} />
+                        <Avatar alt="Naveen" src={'https://media-tir3-1.cdn.whatsapp.net/m1/v/t24/An-u00WXr_w_CDGBZiUqPuB4U5UVxFgCFGZs-qvjAjVwfIdWGIQfQu2EjomQfmXf7yUR5CJ7J6lTNDHdBT4B7CyGDNRU4XxZfFtbe8_LqdB4KxYEDA?stp=s810x1080&ccb=10-5&oh=01_Q5AaIOQgCWQBclByXmI7cG-iqNcQym9BeafnvaEVTvlcTdbm&oe=66DAB584&_nc_sid=e3bc14'} sx={{ width: 50, height: 50 }} />
                     </div>
                     <div className="col-span-9 items-center">
                         <div className="flex justify-between items-center">
